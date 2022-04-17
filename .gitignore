@@ -102,6 +102,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.env_tox/
 .env
 .venv
 env/
