@@ -4,41 +4,43 @@ The Catalyst Python Template Repo
 
 .. readme-intro
 
-.. image:: <https://www.repostatus.org/badges/latest/concept.svg>
-   :target: <https://www.repostatus.org/#concept>
+.. image:: https://www.repostatus.org/badges/latest/concept.svg
+   :target: https://www.repostatus.org/#concept
    :alt: Project Status: Concept - Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.
 
-.. image:: <https://github.com/catalyst-cooperative/python-template/workflows/tox-pytest/badge.svg>
-   :target: <https://github.com/catalyst-cooperative/python-template/actions?query=workflow%3Atox-pytest>
+.. image:: https://github.com/catalyst-cooperative/python-template/workflows/tox-pytest/badge.svg
+   :target: https://github.com/catalyst-cooperative/python-template/actions?query=workflow%3Atox-pytest
    :alt: Tox-PyTest Status
 
-#.. image:: <https://img.shields.io/readthedocs/package_name>
-#   :target: <https://package_name.readthedocs.io/en/latest/>
-#   :alt: Read the Docs Build Status
+.. image:: https://img.shields.io/readthedocs/package_name
+   :target: https://package_name.readthedocs.io/en/latest/
+   :alt: Read the Docs Build Status
 
-.. image:: <https://img.shields.io/codecov/c/github/catalyst-cooperative/python-template>
-   :target: <https://codecov.io/gh/catalyst-cooperative/python-template>
+.. image:: https://img.shields.io/codecov/c/github/catalyst-cooperative/python-template
+   :target: https://codecov.io/gh/catalyst-cooperative/python-template
    :alt: Codecov Test Coverage
 
-#.. image:: <https://img.shields.io/pypi/v/catalystcoop.pudl>
-#   :target: <https://pypi.org/project/catalystcoop.pudl/>
-#   :alt: PyPI Latest Version
+;.. image:: https://img.shields.io/pypi/v/catalystcoop.pudl
+;   :target: https://pypi.org/project/catalystcoop.pudl/
+;   :alt: PyPI Latest Version
 
-#.. image:: <https://img.shields.io/conda/vn/conda-forge/catalystcoop.pudl>
-#   :target: <https://anaconda.org/conda-forge/catalystcoop.pudl>
-#   :alt: conda-forge Version
+;.. image:: https://img.shields.io/conda/vn/conda-forge/catalystcoop.pudl
+;   :target: https://anaconda.org/conda-forge/catalystcoop.pudl
+;   :alt: conda-forge Version
 
-#.. image:: <https://img.shields.io/pypi/pyversions/catalystcoop.pudl>
-#   :target: <https://pypi.org/project/catalystcoop.pudl/>
-#   :alt: Supported Python Versions
+;.. image:: https://img.shields.io/pypi/pyversions/catalystcoop.pudl
+;   :target: https://pypi.org/project/catalystcoop.pudl/
+;   :alt: Supported Python Versions
 
-.. image:: <https://img.shields.io/badge/code%20style-black-000000.svg>
-   :target: <https://github.com/psf/black>
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black>
    :alt: Any color you want, so long as it's black.
 
-#.. image:: <https://zenodo.org/badge/80646423.svg>
-#   :target: <https://zenodo.org/badge/latestdoi/80646423>
-#   :alt: Zenodo DOI
+
+;.. image:: https://zenodo.org/badge/80646423.svg
+;   :target: https://zenodo.org/badge/latestdoi/80646423
+;   :alt: Zenodo DOI
+
 
 A repository template to make setting up new Python projects easier and more uniform.
 
