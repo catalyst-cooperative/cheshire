@@ -38,16 +38,24 @@ The Catalyst Python Template Repo
 
 A repository template to make setting up new Python projects easier and more uniform.
 
-Remaining Tasks
----------------
+Setting up a new repository
+===============================================================================
 
-* instructions in README for getting required tokens
-* Change README to use RST
-* instructions to run pre-commit install
-* Add template cli.py module and entrypoint in setup.py
-* Add template dostuff.py module called by cli.py
+* Fork this template repository to create a new Python project repo.
+  [See instructions here]()
+* Make sure you run ``pre-commit install`` in your new repo.
+* Supply any required tokens, e.g. for CodeCov
+* Rename the ``src/package_name`` directory to reflect the new package name.
+* Search for ``package_name`` and replace it as appropriate everywhere. Sometimes
+  this will be with an installation / distribution name like ``catalystcoop.pkg_name``
+  (the package as it appears for ``pip`` or ``PyPI``) and sometimes this will be the
+  importable package name (the name of the directory under ``src`` e.g. ``pkg_name``)
+* Create the new project / package at Read The Docs.
 
-Python Packaging
+What this template provides
+===============================================================================
+
+Python packaging
 ----------------
 
 * Use ``README.rst`` contents for the long description
