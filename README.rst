@@ -20,27 +20,21 @@ The Catalyst Python Template Repo
    :target: https://codecov.io/gh/catalyst-cooperative/python-template
    :alt: Codecov Test Coverage
 
-;.. image:: https://img.shields.io/pypi/v/catalystcoop.pudl
-;   :target: https://pypi.org/project/catalystcoop.pudl/
-;   :alt: PyPI Latest Version
+.. image:: https://img.shields.io/pypi/v/catalystcoop.python_template
+   :target: https://pypi.org/project/catalystcoop.python_template/
+   :alt: PyPI Latest Version
 
-;.. image:: https://img.shields.io/conda/vn/conda-forge/catalystcoop.pudl
-;   :target: https://anaconda.org/conda-forge/catalystcoop.pudl
-;   :alt: conda-forge Version
+.. image:: https://img.shields.io/conda/vn/conda-forge/catalystcoop.python_template
+   :target: https://anaconda.org/conda-forge/catalystcoop.python_template
+   :alt: conda-forge Version
 
-;.. image:: https://img.shields.io/pypi/pyversions/catalystcoop.pudl
-;   :target: https://pypi.org/project/catalystcoop.pudl/
-;   :alt: Supported Python Versions
+.. image:: https://img.shields.io/pypi/pyversions/catalystcoop.python_template
+   :target: https://pypi.org/project/catalystcoop.python_template/
+   :alt: Supported Python Versions
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black>
    :alt: Any color you want, so long as it's black.
-
-
-;.. image:: https://zenodo.org/badge/80646423.svg
-;   :target: https://zenodo.org/badge/latestdoi/80646423
-;   :alt: Zenodo DOI
-
 
 A repository template to make setting up new Python projects easier and more uniform.
 
