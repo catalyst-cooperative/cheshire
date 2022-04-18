@@ -42,7 +42,7 @@ Setting up a new repository
 ===============================================================================
 
 * Fork this template repository to create a new Python project repo.
-  [See instructions here]()
+  [See instructions here](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 * Make sure you run ``pre-commit install`` in your new repo.
 * Supply any required tokens, e.g. for CodeCov
 * Rename the ``src/package_name`` directory to reflect the new package name.
