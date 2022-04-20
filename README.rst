@@ -42,7 +42,7 @@ Setting up a new repository
 ===============================================================================
 
 * Fork this template repository to create a new Python project repo.
-  [See instructions here](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+  `See instructions here <https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template>`__
 * Make sure you run ``pre-commit install`` in your new repo.
 * Supply any required tokens, e.g. for CodeCov
 * Rename the ``src/package_name`` directory to reflect the new package name.
@@ -120,7 +120,7 @@ anybody, for any purpose, so long as you give us credit for the work we've done.
 
 * For software we use `the MIT License <https://opensource.org/licenses/MIT>`__.
 * For data, documentation, and other non-software works we use the
-  `CC-BY-4.0 <https://creativecommons.org/licenses/by/4.0/>`__
+  `CC-BY-4.0 <https://creativecommons.org/licenses/by/4.0/>`__ license.
 
 Contact Us
 ----------

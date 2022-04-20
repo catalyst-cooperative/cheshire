@@ -3,6 +3,10 @@ import logging
 
 import pkg_resources
 
+# In order for the package modules to be available when you import the package,
+# they need to be imported here somehow. Not sure if this is best practice though.
+import package_name.dummy  # noqa: F401
+
 __author__ = "Catalyst Cooperative"
 __contact__ = "pudl@catalyst.coop"
 __maintainer__ = "Individual Cat"
@@ -18,4 +22,5 @@ __projecturl__ = "https://github.com/catalyst-cooperative/package_name/"
 __downloadurl__ = "https://github.com/catalyst-cooperative/package_name/"
 
 # Create a root logger for use anywhere within the package.
-logging.getLogger(__name__).addHandler(logging.NullHandler())
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
