@@ -16,9 +16,9 @@ build:
 
 # Set the version of Python and requirements required to build your docs
 python:
-  version: "3.9"
+  version: "3.10"
   install:
     - method: pip
       path: .
       extra_requirements:
-          - doc
+          - docs
