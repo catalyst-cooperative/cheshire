@@ -23,7 +23,7 @@ DOCS_DIR = Path(__file__).parent.resolve()
 # importable path.
 
 # The full version, including alpha/beta/rc tags
-release = pkg_resources.get_distribution("package_name").version
+release = pkg_resources.get_distribution("catalystcoop.package_name").version
 
 # -- Project information -----------------------------------------------------
 
