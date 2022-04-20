@@ -18,9 +18,7 @@ dependencies:
 
   # Jupyter packages:
   - jupyterlab>=3.2,<4
-  - jupyter-resource-usage>=0.5,<0.7
-  - nbconvert>=6,<7
-  - nbdime>=3.1,<4
+  - nbconvert>=6,<7  # Used to clear notebook outputs in pre-commit hooks
 
   # Use pip to install the package defined by this repo for development:
   - pip:

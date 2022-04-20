@@ -4,54 +4,58 @@ The Catalyst Python Template Repo
 
 .. readme-intro
 
-.. image:: <https://www.repostatus.org/badges/latest/concept.svg>
-   :target: <https://www.repostatus.org/#concept>
+.. image:: https://www.repostatus.org/badges/latest/concept.svg
+   :target: https://www.repostatus.org/#concept
    :alt: Project Status: Concept - Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.
 
-.. image:: <https://github.com/catalyst-cooperative/python-template/workflows/tox-pytest/badge.svg>
-   :target: <https://github.com/catalyst-cooperative/python-template/actions?query=workflow%3Atox-pytest>
+.. image:: https://github.com/catalyst-cooperative/python-template/workflows/tox-pytest/badge.svg
+   :target: https://github.com/catalyst-cooperative/python-template/actions?query=workflow%3Atox-pytest
    :alt: Tox-PyTest Status
 
-#.. image:: <https://img.shields.io/readthedocs/package_name>
-#   :target: <https://package_name.readthedocs.io/en/latest/>
-#   :alt: Read the Docs Build Status
+.. image:: https://img.shields.io/readthedocs/package_name
+   :target: https://package_name.readthedocs.io/en/latest/
+   :alt: Read the Docs Build Status
 
-.. image:: <https://img.shields.io/codecov/c/github/catalyst-cooperative/python-template>
-   :target: <https://codecov.io/gh/catalyst-cooperative/python-template>
+.. image:: https://img.shields.io/codecov/c/github/catalyst-cooperative/python-template
+   :target: https://codecov.io/gh/catalyst-cooperative/python-template
    :alt: Codecov Test Coverage
 
-#.. image:: <https://img.shields.io/pypi/v/catalystcoop.pudl>
-#   :target: <https://pypi.org/project/catalystcoop.pudl/>
-#   :alt: PyPI Latest Version
+.. image:: https://img.shields.io/pypi/v/catalystcoop.python_template
+   :target: https://pypi.org/project/catalystcoop.python_template/
+   :alt: PyPI Latest Version
 
-#.. image:: <https://img.shields.io/conda/vn/conda-forge/catalystcoop.pudl>
-#   :target: <https://anaconda.org/conda-forge/catalystcoop.pudl>
-#   :alt: conda-forge Version
+.. image:: https://img.shields.io/conda/vn/conda-forge/catalystcoop.python_template
+   :target: https://anaconda.org/conda-forge/catalystcoop.python_template
+   :alt: conda-forge Version
 
-#.. image:: <https://img.shields.io/pypi/pyversions/catalystcoop.pudl>
-#   :target: <https://pypi.org/project/catalystcoop.pudl/>
-#   :alt: Supported Python Versions
+.. image:: https://img.shields.io/pypi/pyversions/catalystcoop.python_template
+   :target: https://pypi.org/project/catalystcoop.python_template/
+   :alt: Supported Python Versions
 
-.. image:: <https://img.shields.io/badge/code%20style-black-000000.svg>
-   :target: <https://github.com/psf/black>
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black>
    :alt: Any color you want, so long as it's black.
-
-#.. image:: <https://zenodo.org/badge/80646423.svg>
-#   :target: <https://zenodo.org/badge/latestdoi/80646423>
-#   :alt: Zenodo DOI
 
 A repository template to make setting up new Python projects easier and more uniform.
 
-Remaining Tasks
----------------
+Setting up a new repository
+===============================================================================
 
-* instructions in README for getting required tokens
-* Change README to use RST
-* instructions to run pre-commit install
-* Add template cli.py module and entrypoint in setup.py
-* Add template dostuff.py module called by cli.py
+* Fork this template repository to create a new Python project repo.
+  `See instructions here <https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template>`__
+* Make sure you run ``pre-commit install`` in your new repo.
+* Supply any required tokens, e.g. for CodeCov
+* Rename the ``src/package_name`` directory to reflect the new package name.
+* Search for ``package_name`` and replace it as appropriate everywhere. Sometimes
+  this will be with an installation / distribution name like ``catalystcoop.pkg_name``
+  (the package as it appears for ``pip`` or ``PyPI``) and sometimes this will be the
+  importable package name (the name of the directory under ``src`` e.g. ``pkg_name``)
+* Create the new project / package at Read The Docs.
 
-Python Packaging
+What this template provides
+===============================================================================
+
+Python packaging
 ----------------
 
 * Use ``README.rst`` contents for the long description
@@ -116,7 +120,7 @@ anybody, for any purpose, so long as you give us credit for the work we've done.
 
 * For software we use `the MIT License <https://opensource.org/licenses/MIT>`__.
 * For data, documentation, and other non-software works we use the
-  `CC-BY-4.0 <https://creativecommons.org/licenses/by/4.0/>`__
+  `CC-BY-4.0 <https://creativecommons.org/licenses/by/4.0/>`__ license.
 
 Contact Us
 ----------

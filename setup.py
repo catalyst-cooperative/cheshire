@@ -11,7 +11,7 @@ long_description = readme_path.read_text()
 
 setup(
     # This should be the *installed* package name e.g. catalystcoop.pudl not pudl
-    name="package_name",
+    name="catalystcoop.package_name",
     description="A one line description of the package.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
@@ -70,6 +70,7 @@ setup(
             "pytest>=6.2,<8",  # Our testing framework
             "pytest-console-scripts>=1.1,<2",  # Allow automatic testing of scripts
             "pytest-cov>=2.10,<4.0",  # Pytest plugin for working with coverage
+            "rstcheck>=5,<6",  # ReStructuredText linter
             "tox>=3.20,<4",  # Python test environment manager
         ],
     },
