@@ -5,6 +5,7 @@ import pkg_resources
 
 # In order for the package modules to be available when you import the package,
 # they need to be imported here somehow. Not sure if this is best practice though.
+import package_name.cli
 import package_name.dummy  # noqa: F401
 
 __author__ = "Catalyst Cooperative"

@@ -4,21 +4,17 @@ The Catalyst Python Project Template
 
 .. readme-intro
 
-.. image:: https://www.repostatus.org/badges/latest/concept.svg
-   :target: https://www.repostatus.org/#concept
-   :alt: Project Status: Concept - Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.
-
 .. image:: https://github.com/catalyst-cooperative/python-template/workflows/tox-pytest/badge.svg
    :target: https://github.com/catalyst-cooperative/python-template/actions?query=workflow%3Atox-pytest
    :alt: Tox-PyTest Status
 
-.. image:: https://img.shields.io/readthedocs/catalystcoop-python-template
-   :target: https://catalystcoop-python-template.readthedocs.io/en/latest/
-   :alt: Read the Docs Build Status
-
-.. image:: https://img.shields.io/codecov/c/github/catalyst-cooperative/python-template
+.. image:: https://img.shields.io/codecov/c/github/catalyst-cooperative/python-template?style=flat&logo=codecov
    :target: https://codecov.io/gh/catalyst-cooperative/python-template
    :alt: Codecov Test Coverage
+
+.. image:: https://img.shields.io/readthedocs/catalystcoop-python-template?style=flat&logo=readthedocs
+   :target: https://catalystcoop-python-template.readthedocs.io/en/latest/
+   :alt: Read the Docs Build Status
 
 .. image:: https://img.shields.io/pypi/v/catalystcoop.python_template
    :target: https://pypi.org/project/catalystcoop.python_template/
