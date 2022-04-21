@@ -1,5 +1,5 @@
 ===============================================================================
-The Public Utility Data Liberation Project
+The Catalyst Python Project Template
 ===============================================================================
 
 .. include:: ../README.rst
