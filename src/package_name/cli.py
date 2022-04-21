@@ -54,7 +54,7 @@ def parse_command_line(argv: str) -> Dict[str, Any]:
 
 
 def main():
-    """Convert zipped EPA CEMS Hourly data to Apache Parquet format."""
+    """Demonstrate a really basic command line interface (CLI) that takes arguments."""
     logging.basicConfig(
         format="%(asctime)s [%(levelname)8s] %(name)s:%(lineno)s %(message)s",
         level=logging.INFO,
