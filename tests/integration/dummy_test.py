@@ -3,6 +3,8 @@ import logging
 
 import pytest
 
+from package_name.dummy import do_something
+
 logger = logging.getLogger(__name__)
 
 
@@ -20,5 +22,5 @@ def test_something(a: int, b: int, expected_c: int):
 
     This function also demonstrates how to parametrize a test.
     """
-    c = a + b
+    c = do_something(a, b)
     assert c == expected_c  # nosec: B101
