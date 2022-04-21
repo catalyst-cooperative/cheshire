@@ -1,0 +1,79 @@
+"""
+A skeleton of a command line interface module to be deployed as an entry point script.
+
+It takes two numbers and does something to them, printing out the result.
+
+"""
+import argparse
+import logging
+import sys
+from typing import Any, Dict
+
+from package_name.dummy import do_something
+
+# This is the module-level logger, for any logs
+logger = logging.getLogger(__name__)
+
+
+def parse_command_line(argv: str) -> Dict[str, Any]:
+    """
+    Parse command line arguments. See the -h option for details.
+
+    Args:
+        argv (str): Command line arguments, including caller filename.
+
+    Returns:
+        dict: Dictionary of command line arguments and their parsed values.
+
+    """
+
+    def formatter(prog):
+        """This is a hack to create HelpFormatter with a particular width."""
+        return argparse.HelpFormatter(prog, width=88)
+
+    # Use the module-level docstring as the script's description in the help message.
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=formatter)
+
+    parser.add_argument(
+        "-a",
+        "--alpha",
+        type=int,
+        help="An integer to do something to. Defaults to two (2).",
+        default=2,
+    )
+    parser.add_argument(
+        "-b",
+        "--beta",
+        type=int,
+        help="Another integer to do something to. Defaults to two (2).",
+        default=2,
+    )
+
+    arguments = parser.parse_args(argv[1:])
+    return arguments
+
+
+def main():
+    """Convert zipped EPA CEMS Hourly data to Apache Parquet format."""
+    logging.basicConfig(
+        format="%(asctime)s [%(levelname)8s] %(name)s:%(lineno)s %(message)s",
+        level=logging.INFO,
+    )
+
+    args = parse_command_line(sys.argv)
+
+    # Validate or sanitize your inputs! Users are crazy.
+    if not isinstance(args.alpha, int):
+        raise TypeError(f"Expected integer for alpha, but got a {type(args.alpha)}")
+    if not isinstance(args.beta, int):
+        raise TypeError(f"Expected integer for beta, but got a {type(args.beta)}")
+
+    caligula = do_something(a=args.alpha, b=args.beta)
+    print(
+        "If you are a man Winston, you are the last man: "
+        f"{args.alpha} + {args.beta} = {caligula}"
+    )
+
+
+if __name__ == "__main__":
+    sys.exit(main())

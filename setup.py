@@ -99,9 +99,10 @@ setup(
     include_package_data=True,
     # entry_points defines interfaces to command line scripts we distribute.
     # Can also be used for other resource deployments, like intake catalogs.
-    # entry_points={
-    #     "console_scripts": [
-    #         "script_name = dotted.module.path.to:main_script_function",
-    #     ]
-    # },
+    entry_points={
+        "console_scripts": [
+            # "script_name = dotted.module.path.to:main_script_function",
+            "winston = package_name.cli:main",
+        ]
+    },
 )
