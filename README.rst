@@ -12,8 +12,8 @@ The Catalyst Python Template Repo
    :target: https://github.com/catalyst-cooperative/python-template/actions?query=workflow%3Atox-pytest
    :alt: Tox-PyTest Status
 
-.. image:: https://img.shields.io/readthedocs/package_name
-   :target: https://package_name.readthedocs.io/en/latest/
+.. image:: https://img.shields.io/readthedocs/catalystcoop-python-template
+   :target: https://catalystcoop-python-template.readthedocs.io/en/latest/
    :alt: Read the Docs Build Status
 
 .. image:: https://img.shields.io/codecov/c/github/catalyst-cooperative/python-template
