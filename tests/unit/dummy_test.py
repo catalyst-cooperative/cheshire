@@ -9,7 +9,7 @@ from package_name.dummy import do_something
 logger = logging.getLogger(__name__)
 
 
-def test_nothing(test_dir: Path):
+def test_nothing(test_dir: Path) -> None:
     """A dummy test that relies on our dummy fixture."""
     assert isinstance(test_dir, Path)  # nosec: B101
     assert test_dir.exists()  # nosec: B101
@@ -24,7 +24,7 @@ def test_nothing(test_dir: Path):
         (13, 22, 35),
     ],
 )
-def test_something(a: int, b: int, expected_c: int):
+def test_something(a: int, b: int, expected_c: int) -> None:
     """
     Test the dummy function from our dummy module to generate coverage.
 

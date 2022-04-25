@@ -13,7 +13,7 @@ ENTRY_POINTS = [
 
 @pytest.mark.parametrize("ep", ENTRY_POINTS)
 @pytest.mark.script_launch_mode("inprocess")
-def test_pudl_scripts(script_runner, ep):
+def test_pudl_scripts(script_runner, ep):  # type: ignore
     """
     Run each deployed console script with --help for testing.
 

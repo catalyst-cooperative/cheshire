@@ -16,15 +16,15 @@ The Catalyst Python Project Template
    :target: https://catalystcoop-python-template.readthedocs.io/en/latest/
    :alt: Read the Docs Build Status
 
-.. image:: https://img.shields.io/pypi/v/catalystcoop.python_template
+.. image:: https://img.shields.io/pypi/v/catalystcoop.python_template?style=flat&logo=python
    :target: https://pypi.org/project/catalystcoop.python_template/
    :alt: PyPI Latest Version
 
-.. image:: https://img.shields.io/conda/vn/conda-forge/catalystcoop.python_template
+.. image:: https://img.shields.io/conda/vn/conda-forge/catalystcoop.python_template?style=flat&logo=condaforge
    :target: https://anaconda.org/conda-forge/catalystcoop.python_template
    :alt: conda-forge Version
 
-.. image:: https://img.shields.io/pypi/pyversions/catalystcoop.python_template
+.. image:: https://img.shields.io/pypi/pyversions/catalystcoop.python_template?style=flat&logo=python
    :target: https://pypi.org/project/catalystcoop.python_template/
    :alt: Supported Python Versions
 

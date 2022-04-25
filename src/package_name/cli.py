@@ -7,7 +7,7 @@ It takes two numbers and does something to them, printing out the result.
 import argparse
 import logging
 import sys
-from typing import Any, Dict
+from typing import List
 
 from package_name.dummy import do_something
 
@@ -15,7 +15,7 @@ from package_name.dummy import do_something
 logger = logging.getLogger(__name__)
 
 
-def parse_command_line(argv: str) -> Dict[str, Any]:
+def parse_command_line(argv: List[str]) -> argparse.Namespace:
     """
     Parse command line arguments. See the -h option for details.
 
@@ -27,7 +27,7 @@ def parse_command_line(argv: str) -> Dict[str, Any]:
 
     """
 
-    def formatter(prog):
+    def formatter(prog) -> argparse.HelpFormatter:  # type: ignore
         """This is a hack to create HelpFormatter with a particular width."""
         return argparse.HelpFormatter(prog, width=88)
 
@@ -53,7 +53,7 @@ def parse_command_line(argv: str) -> Dict[str, Any]:
     return arguments
 
 
-def main():
+def main() -> int:
     """Demonstrate a really basic command line interface (CLI) that takes arguments."""
     logging.basicConfig(
         format="%(asctime)s [%(levelname)8s] %(name)s:%(lineno)s %(message)s",
@@ -73,6 +73,7 @@ def main():
         "If you are a man Winston, you are the last man: "
         f"{args.alpha} + {args.beta} = {caligula}"
     )
+    return 0
 
 
 if __name__ == "__main__":

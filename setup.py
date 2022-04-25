@@ -42,8 +42,8 @@ setup(
         "dev": [
             "black>=22,<23",  # A deterministic code formatter
             "isort>=5,<6",  # Standardized import sorting
-            "twine>=3.3,<5.0",  # Used to make releases to PyPI
             "tox>=3.20,<4",  # Python test environment manager
+            "twine>=3.3,<5.0",  # Used to make releases to PyPI
         ],
         "docs": [
             "doc8>=0.9,<0.12",  # Ensures clean documentation formatting

@@ -76,6 +76,16 @@ repos:
   # Currently no configuration...
   # args: [--configfile, .bandit.yml]
 
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v0.942
+  hooks:
+  - id: mypy
+    additional_dependencies:
+    - pytest
+    - types-jinja2
+    - types-setuptools
+    args: [--strict]
+
 - repo: local
   hooks:
     - id: nb-output-clear
