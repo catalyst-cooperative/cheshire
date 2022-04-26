@@ -73,6 +73,7 @@ def main():
         "If you are a man Winston, you are the last man: "
         f"{args.alpha} + {args.beta} = {caligula}"
     )
+    return 0
 
 
 if __name__ == "__main__":
