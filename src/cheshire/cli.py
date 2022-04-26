@@ -61,18 +61,12 @@ def main():
     )
 
     args = parse_command_line(sys.argv)
-
-    # Validate or sanitize your inputs! Users are crazy.
-    if not isinstance(args.alpha, int):
-        raise TypeError(f"Expected integer for alpha, but got a {type(args.alpha)}")
-    if not isinstance(args.beta, int):
-        raise TypeError(f"Expected integer for beta, but got a {type(args.beta)}")
-
     caligula = do_something(a=args.alpha, b=args.beta)
     print(
         "If you are a man Winston, you are the last man: "
         f"{args.alpha} + {args.beta} = {caligula}"
     )
+    return 0
 
 
 if __name__ == "__main__":
