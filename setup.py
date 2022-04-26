@@ -42,8 +42,8 @@ setup(
         "dev": [
             "black>=22,<23",  # A deterministic code formatter
             "isort>=5,<6",  # Standardized import sorting
-            "twine>=3.3,<5.0",  # Used to make releases to PyPI
             "tox>=3.20,<4",  # Python test environment manager
+            "twine>=3.3,<5.0",  # Used to make releases to PyPI
         ],
         "docs": [
             "doc8>=0.9,<0.12",  # Ensures clean documentation formatting
@@ -64,6 +64,7 @@ setup(
             "flake8-rst-docstrings>=0.2,<0.3",  # Allow use of ReST in docstrings
             "flake8-use-fstring>=1,<2",  # Highlight use of old-style string formatting
             "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
+            "mypy>=0.942",  # Static type checking
             "pep8-naming>=0.12,<0.13",  # Require PEP8 compliant variable names
             "pre-commit>=2.9,<3",  # Allow us to run pre-commit hooks in testing
             "pydocstyle>=5.1,<7",  # Style guidelines for Python documentation
@@ -72,6 +73,9 @@ setup(
             "pytest-cov>=2.10,<4.0",  # Pytest plugin for working with coverage
             "rstcheck>=5,<6",  # ReStructuredText linter
             "tox>=3.20,<4",  # Python test environment manager
+        ],
+        "types": [
+            "types-setuptools",
         ],
     },
     # A controlled vocabulary of tags used by the Python Package Index.

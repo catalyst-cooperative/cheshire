@@ -13,6 +13,7 @@ import shutil
 from pathlib import Path
 
 import pkg_resources
+from sphinx.application import Sphinx
 
 DOCS_DIR = Path(__file__).parent.resolve()
 
@@ -117,19 +118,19 @@ html_static_path = ["_static"]
 
 
 # -- Custom build operations -------------------------------------------------
-def cleanup_rsts(app, exception):
+def cleanup_rsts(app: Sphinx, exception: Exception) -> None:
     """Remove generated RST files when the build is finished."""
     (DOCS_DIR / "path/to/temporary/rst/file.rst").unlink()
 
 
-def cleanup_csv_dir(app, exception):
+def cleanup_csv_dir(app: Sphinx, exception: Exception) -> None:
     """Remove generated CSV files when the build is finished."""
     csv_dir = DOCS_DIR / "path/to/temporary/csv/dir/"
     if csv_dir.exists() and csv_dir.is_dir():
         shutil.rmtree(csv_dir)
 
 
-def setup(app):
+def setup(app: Sphinx) -> None:
     """Add custom CSS defined in _static/custom.css."""
     app.add_css_file("custom.css")
     # Examples of custom docs build steps:
