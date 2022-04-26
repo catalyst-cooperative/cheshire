@@ -9,7 +9,7 @@ import logging
 import sys
 from typing import Any, Dict
 
-from package_name.dummy import do_something
+from cheshire.dummy import do_something
 
 # This is the module-level logger, for any logs
 logger = logging.getLogger(__name__)
