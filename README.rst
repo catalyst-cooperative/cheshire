@@ -4,28 +4,28 @@ The Catalyst Python Project Template
 
 .. readme-intro
 
-.. image:: https://github.com/catalyst-cooperative/python-template/workflows/tox-pytest/badge.svg
-   :target: https://github.com/catalyst-cooperative/python-template/actions?query=workflow%3Atox-pytest
+.. image:: https://github.com/catalyst-cooperative/cheshire/workflows/tox-pytest/badge.svg
+   :target: https://github.com/catalyst-cooperative/cheshire/actions?query=workflow%3Atox-pytest
    :alt: Tox-PyTest Status
 
-.. image:: https://img.shields.io/codecov/c/github/catalyst-cooperative/python-template?style=flat&logo=codecov
-   :target: https://codecov.io/gh/catalyst-cooperative/python-template
+.. image:: https://img.shields.io/codecov/c/github/catalyst-cooperative/cheshire?style=flat&logo=codecov
+   :target: https://codecov.io/gh/catalyst-cooperative/cheshire
    :alt: Codecov Test Coverage
 
-.. image:: https://img.shields.io/readthedocs/catalystcoop-python-template?style=flat&logo=readthedocs
-   :target: https://catalystcoop-python-template.readthedocs.io/en/latest/
+.. image:: https://img.shields.io/readthedocs/catalystcoop-cheshire?style=flat&logo=readthedocs
+   :target: https://catalystcoop-cheshire.readthedocs.io/en/latest/
    :alt: Read the Docs Build Status
 
-.. image:: https://img.shields.io/pypi/v/catalystcoop.python_template?style=flat&logo=python
-   :target: https://pypi.org/project/catalystcoop.python_template/
+.. image:: https://img.shields.io/pypi/v/catalystcoop.cheshire?style=flat&logo=python
+   :target: https://pypi.org/project/catalystcoop.cheshire/
    :alt: PyPI Latest Version
 
-.. image:: https://img.shields.io/conda/vn/conda-forge/catalystcoop.python_template?style=flat&logo=condaforge
-   :target: https://anaconda.org/conda-forge/catalystcoop.python_template
+.. image:: https://img.shields.io/conda/vn/conda-forge/catalystcoop.cheshire?style=flat&logo=condaforge
+   :target: https://anaconda.org/conda-forge/catalystcoop.cheshire
    :alt: conda-forge Version
 
-.. image:: https://img.shields.io/pypi/pyversions/catalystcoop.python_template?style=flat&logo=python
-   :target: https://pypi.org/project/catalystcoop.python_template/
+.. image:: https://img.shields.io/pypi/pyversions/catalystcoop.cheshire?style=flat&logo=python
+   :target: https://pypi.org/project/catalystcoop.cheshire/
    :alt: Supported Python Versions
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
@@ -41,11 +41,11 @@ Setting up a new repository
   `See instructions here <https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template>`__
 * Make sure you run ``pre-commit install`` in your new repo.
 * Supply any required tokens, e.g. for CodeCov
-* Rename the ``src/package_name`` directory to reflect the new package name.
-* Search for ``package_name`` and replace it as appropriate everywhere. Sometimes
-  this will be with an installation / distribution name like ``catalystcoop.pkg_name``
+* Rename the ``src/cheshire`` directory to reflect the new package name.
+* Search for ``cheshire`` and replace it as appropriate everywhere. Sometimes
+  this will be with a distribution name like ``catalystcoop.cheshire``
   (the package as it appears for ``pip`` or ``PyPI``) and sometimes this will be the
-  importable package name (the name of the directory under ``src`` e.g. ``pkg_name``)
+  importable package name (the name of the directory under ``src`` e.g. ``cheshire``)
 * Create the new project / package at Read The Docs.
 
 What this template provides
