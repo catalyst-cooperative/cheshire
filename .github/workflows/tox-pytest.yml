@@ -25,7 +25,7 @@ jobs:
         channels: conda-forge,defaults
         channel-priority: true
         python-version: ${{ matrix.python-version }}
-        activate-environment: python-template
+        activate-environment: cheshire
         environment-file: environment.yml
     - shell: bash -l {0}
       run: |
@@ -37,7 +37,7 @@ jobs:
 
     - name: Run PyTest with Tox
       run: |
-        conda run -n python-template tox
+        conda run -n cheshire tox
 
     - name: Upload test coverage report to CodeCov
       uses: codecov/codecov-action@v3

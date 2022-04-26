@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Setup script to make PACKAGE_NAME installable with pip."""
+"""Setup script to make Cheshire installable with pip."""
 
 from pathlib import Path
 
@@ -11,7 +11,7 @@ long_description = readme_path.read_text()
 
 setup(
     # This should be the *installed* package name e.g. catalystcoop.pudl not pudl
-    name="catalystcoop.package_name",
+    name="catalystcoop.cheshire",
     description="A one line description of the package.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
@@ -20,20 +20,20 @@ setup(
     use_scm_version=True,
     author="Catalyst Cooperative",
     author_email="pudl@catalyst.coop",
-    maintainer="Individual Cat",
-    maintainer_email="individual.cat@catalyst.coop",
+    maintainer="Chesire Cat",
+    maintainer_email="pudl@catalyst.coop",
     url="",  # Can be repo or docs URL if no separate web page exists.
     project_urls={
-        "Source": "https://github.com/catalyst-cooperative/REPO_NAME",
-        "Documentation": "https://PACKAGE_NAME.readthedocs.io",
-        "Issue Tracker": "https://github.com/catalyst-cooperative/REPO_NAME/issues",
+        "Source": "https://github.com/catalyst-cooperative/cheshire",
+        "Documentation": "https://catalystcoop-cheshire.readthedocs.io",
+        "Issue Tracker": "https://github.com/catalyst-cooperative/cheshire/issues",
     },
     license="MIT",
     # Fill in search keywords that users might use to find the package
     keywords=[],
     python_requires=">=3.8,<3.11",
     # In order for the dependabot to update versions, they must be listed here.
-    # Use the format package_name>=x,<y", Included packages are just examples:
+    # Use the format pkg_name>=x,<y", Included packages are just examples:
     install_requires=[
         "pandas>=1.4,<1.5",
         "sqlalchemy>=1.4,<2",
@@ -102,7 +102,7 @@ setup(
     entry_points={
         "console_scripts": [
             # "script_name = dotted.module.path.to:main_script_function",
-            "winston = package_name.cli:main",
+            "winston = cheshire.cli:main",
         ]
     },
 )
