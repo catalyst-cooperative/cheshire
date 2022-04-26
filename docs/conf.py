@@ -23,7 +23,7 @@ DOCS_DIR = Path(__file__).parent.resolve()
 # importable path.
 
 # The full version, including alpha/beta/rc tags
-release = pkg_resources.get_distribution("catalystcoop.package_name").version
+release = pkg_resources.get_distribution("catalystcoop.cheshire").version
 
 # -- Project information -----------------------------------------------------
 
@@ -53,7 +53,7 @@ todo_include_todos = True
 # Automatically generate API documentation during the doc build:
 autoapi_type = "python"
 autoapi_dirs = [
-    "../src/package_name",
+    "../src/cheshire",
 ]
 autoapi_ignore = [
     "*_test.py",

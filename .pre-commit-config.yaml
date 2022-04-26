@@ -93,7 +93,7 @@ repos:
       verbose: false
       pass_filenames: false
       always_run: true
-      entry: pytest --doctest-modules src/package_name tests/unit
+      entry: pytest --doctest-modules src/cheshire tests/unit
 
 # Configuration for pre-commit.ci
 ci:
