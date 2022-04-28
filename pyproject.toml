@@ -10,4 +10,4 @@ include = "\\.pyi?$"
 
 [tool.isort]
 profile = "black"
-# known_first_party = "PACKAGE NAME AS IMPORTED e.g. pudl not catalystcoop.pudl"
+known_first_party = ["cheshire", "pudl", "pudl_catalog"]
