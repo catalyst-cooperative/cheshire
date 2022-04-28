@@ -1,5 +1,4 @@
-"""
-A skeleton of a command line interface module to be deployed as an entry point script.
+"""A skeleton of a command line interface to be deployed as an entry point script.
 
 It takes two numbers and does something to them, printing out the result.
 
@@ -16,8 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 def parse_command_line(argv: List[str]) -> argparse.Namespace:
-    """
-    Parse command line arguments. See the -h option for details.
+    """Parse command line arguments. See the -h option for details.
 
     Args:
         argv (str): Command line arguments, including caller filename.
