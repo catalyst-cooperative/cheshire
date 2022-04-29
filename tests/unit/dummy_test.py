@@ -25,10 +25,10 @@ def test_nothing(test_dir: Path) -> None:
     ],
 )
 def test_something(a: int, b: int, expected_c: int) -> None:
-    """
-    Test the dummy function from our dummy module to generate coverage.
+    """Test the dummy function from our dummy module to generate coverage.
 
     This function also demonstrates how to parametrize a test.
+
     """
     c = do_something(a, b)
     assert c == expected_c  # nosec: B101

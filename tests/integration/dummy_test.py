@@ -17,8 +17,7 @@ logger = logging.getLogger(__name__)
     ],
 )
 def test_something(a: int, b: int, expected_c: int) -> None:
-    """
-    Test the dummy function from our dummy module to generate coverage.
+    """Test the dummy function from our dummy module to generate coverage.
 
     This function also demonstrates how to parametrize a test.
     """

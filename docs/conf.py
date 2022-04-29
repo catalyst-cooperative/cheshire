@@ -62,7 +62,7 @@ autoapi_ignore = [
 ]
 
 # GitHub repo
-issues_github_path = "catalyst-cooperative/repo_name"
+issues_github_path = "catalyst-cooperative/cheshire"
 
 # In order to be able to link directly to documentation for other projects,
 # we need to define these package to URL mappings:
