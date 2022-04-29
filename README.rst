@@ -163,9 +163,33 @@ Git Pre-commit Hooks
 * These checks are run as part of our CI, and the CI will fail if the pre-commit hooks
   fail.
 * We also use the `pre-commit.ci <https://pre-commit.ci>`__ service to run the same
-  checks on any code that is pushed to GitHub, and to apply e.g. formatting changes from
-  ``black``  and ``isort`` to the PR preemptively, in case they have not be run locally
-  prior to the code being committed.
+  checks on any code that is pushed to GitHub, and to apply standard code formatting
+  to the PR in case it hasn't been run locally prior to being committed.
+
+Code Formatting
+---------------
+To avoid the tedium of meticulously formatting all the code ourselves, and to ensure as
+standard style of formatting and sytactical idioms across the codebase, we use several
+automatic code formatters, which run as pre-commit hooks. Many of them can also be
+integrated direclty into your text editor or IDE with the appropriate plugins. The
+following formatters are included in the template ``.pre-commit-config.yaml``:
+
+* `Use only absolute import paths <https://github.com/MarcoGorelli/absolufy-imports>`__
+* `Standardize the sorting of imports <https://github.com/PyCQA/isort>`__
+* `Remove unneccesary f-strings <https://github.com/dannysepler/rm_unneeded_f_str>`__
+* `Upgrade type hints for built-in types <https://github.com/sondrelg/pep585-upgrade>`__
+* `Upgrade Python syntax <https://github.com/asottile/pyupgrade>`__
+* `Deterministic formatting with Black <https://github.com/psf/black>`__
+
+Code & Documentation Linters
+----------------------------
+* ``bandit`` looks for security issues.
+* ``doc8``
+* ``flake8`` The Python linter Swiss Army knife.
+* ``mypy`` type checking
+* ``pre-commit``
+* ``pygrep``
+* ``rstcheck``
 
 Test Coverage
 -------------
@@ -243,30 +267,21 @@ Read the Docs Integration
 * Once the repository is connected to Read the Docs, an initial build of the
   documentation from the ``main`` branch should start.
 
-Code & Documentation Linters
-----------------------------
-
-* ``bandit`` looks for security issues.
-* ``doc8``
-* ``flake8`` linter with a bunch of plugins.
-* ``mypy`` type checking
-* ``pre-commit``
-* ``rstcheck``
-
-Code Formatters
----------------
-* ``black`` code formatter
-* ``isort`` for organizing imports
-
 Dependabot
 ----------
-* pip / python
-* github actions
+We use GitHub's `Dependabot <https://docs.github.com/en/code-security/dependabot/dependabot-version-updates>`__
+to automatically update the allowable versions of packages we depend on. This applies
+to both the Python dependencies specified in ``setup.py`` and to the versions of the
+`GitHub Actions <https://docs.github.com/en/actions>`__ that we employ. The dependabot
+behavior is configured in ``.github/dependabot.yml``
 
 GitHub Actions
 --------------
-* tox-pytest
-* repo2docker
+Under ``.github/workflows`` are YAML files that configure the `GitHub Actions
+<https://docs.github.com/en/actions>`__ associated with the repository. We use GitHub
+actions primarily to run Tox / pytest. It can also be used to build a Docker container
+encapsulating the software environment of the repo, to scrape and archive remote data,
+and many other things.
 
 Leftovers
 ---------
