@@ -1,4 +1,4 @@
-name: Build Jupyter Notebook Container
+name: repo2docker
 on: [push]
 jobs:
   build:

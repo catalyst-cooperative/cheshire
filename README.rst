@@ -180,16 +180,29 @@ following formatters are included in the template ``.pre-commit-config.yaml``:
 * `Upgrade type hints for built-in types <https://github.com/sondrelg/pep585-upgrade>`__
 * `Upgrade Python syntax <https://github.com/asottile/pyupgrade>`__
 * `Deterministic formatting with Black <https://github.com/psf/black>`__
+* We also have a custom hook that clears Jupyter notebook outputs prior to committing.
 
 Code & Documentation Linters
 ----------------------------
-* ``bandit`` looks for security issues.
-* ``doc8``
-* ``flake8`` The Python linter Swiss Army knife.
-* ``mypy`` type checking
-* ``pre-commit``
-* ``pygrep``
-* ``rstcheck``
+To catch errors before commits are made, and to ensure uniform formatting across the
+codebase, we also use a bunch of different linters. They don't change the code or
+documentation files, but they will raise an error or warning when something doesn't
+look right so you can fix it.
+
+* `bandit <https://bandit.readthedocs.io/en/latest/>`__ identifies code patterns known
+  to cause security issues.
+* `doc8 <https://github.com/pycqa/doc8>`__ and `rstcheck
+  <https://github.com/myint/rstcheck>`__ look for formatting issues in our docstrings
+  and the standalone ReStructuredText (RST) files under the ``docs/`` directory.
+* `flake8 <https://github.com/PyCQA/flake8>`__ is an extensible Python linting
+  framework, with a bunch of plugins.
+* `mypy <https://mypy.readthedocs.io/en/stable/index.html>`__ Does static type checking,
+  and ensures that our code uses type annotations.
+* `pre-commit <https://pre-commit.com>`__ has a collection of built-in checks that `use
+  pygrep to search Python files <https://github.com/pre-commit/pygrep-hooks>`__ for
+  common problems like blanket ``# noqa`` annotations, as well as `language agnostic
+  problems <https://github.com/pre-commit/pre-commit-hooks>`__ like accidentally
+  checking large binary files into the repository or having unresolved merge conflicts.
 
 Test Coverage
 -------------
@@ -242,9 +255,10 @@ Documentation Builds
   based on the PUDL metadata whenever the docs are built, ensuring that the docs stay up
   to date.
 
-Read the Docs Integration
--------------------------
-* We use the popular Read the Docs service to host our documentation.
+Documentation Publishing
+------------------------
+* We use the popular `Read the Docs <https://readthedocs.io>`__ service to host our
+  documentation.
 * When you open a PR, push to ``dev`` or ``main``, or tag a release, the associated
   documentation is automatically built on Read the Docs.
 * There's some minimal configuration stored in the ``.readthedocs.yml`` file, but
@@ -279,20 +293,15 @@ GitHub Actions
 --------------
 Under ``.github/workflows`` are YAML files that configure the `GitHub Actions
 <https://docs.github.com/en/actions>`__ associated with the repository. We use GitHub
-actions primarily to run Tox / pytest. It can also be used to build a Docker container
-encapsulating the software environment of the repo, to scrape and archive remote data,
-and many other things.
+Actions primarily to:
 
-Leftovers
----------
-* conda environment.yml
-* notebooks directory
-* nb-clear-outputs in pre-commit
-* .gitignore
+* Run continuous integration using `tox <https://tox.wiki>`__ on several different
+  versions of Python.
+* Build a Docker container with `repo2docker <https://github.com/marketplace/actions/repo2docker-action>`__
+  which encapsulates the conda environment defined by the top level ``environment.yml``
 
 About Catalyst Cooperative
 =======================================================================================
-
 `Catalyst Cooperative <https://catalyst.coop>`__ is a small group of data
 wranglers and policy wonks organized as a worker-owned cooperative consultancy.
 Our goal is a more just, livable, and sustainable world. We integrate public
@@ -302,7 +311,6 @@ climate change and improving electric utility regulation in the United States.
 
 Contact Us
 ----------
-
 * For general support, questions, or other conversations around the project
   that might be of interest to others, check out the
   `GitHub Discussions <https://github.com/catalyst-cooperative/pudl/discussions>`__
