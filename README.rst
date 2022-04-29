@@ -299,6 +299,11 @@ Actions primarily to:
   versions of Python.
 * Build a Docker container with `repo2docker <https://github.com/marketplace/actions/repo2docker-action>`__
   which encapsulates the conda environment defined by the top level ``environment.yml``
+  Note that for this action to succeed, you will need to
+  `create a personal access token on Docker Hub <https://docs.docker.com/docker-hub/access-tokens/>`__
+  and create new repository secrets to store your username and token called
+  ``DOCKERHUB_USERNAME`` and ``DOCKERHUB_TOKEN`` and make sure that the Docker Hub
+  repository you're trying to push to exists.
 
 About Catalyst Cooperative
 =======================================================================================
