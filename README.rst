@@ -33,7 +33,7 @@ Cheshire: a Python Template Repository for Catalyst
 
 This template repository helps make new Python projects easier to set up and more
 uniform. It contains a lot of infrastructure surrounding a minimal Python package named
-`cheshire` (the cat who isn't entirely there...).
+``cheshire`` (the cat who isn't entirely there...).
 
 Create a new repository from this template
 =======================================================================================
@@ -260,13 +260,13 @@ Code Formatters
 
 Dependabot
 ----------
-  - pip / python
-  - github actions
+* pip / python
+* github actions
 
 GitHub Actions
 --------------
-  - tox-pytest
-  - repo2docker
+* tox-pytest
+* repo2docker
 
 Leftovers
 ---------

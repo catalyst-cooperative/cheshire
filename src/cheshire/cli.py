@@ -3,10 +3,11 @@
 It takes two numbers and does something to them, printing out the result.
 
 """
+from __future__ import annotations
+
 import argparse
 import logging
 import sys
-from typing import List
 
 from cheshire.dummy import do_something
 
@@ -14,7 +15,7 @@ from cheshire.dummy import do_something
 logger = logging.getLogger(__name__)
 
 
-def parse_command_line(argv: List[str]) -> argparse.Namespace:
+def parse_command_line(argv: list[str]) -> argparse.Namespace:
     """Parse command line arguments. See the -h option for details.
 
     Args:
