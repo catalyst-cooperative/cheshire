@@ -7,6 +7,14 @@ Cheshire: a Python Template Repository for Catalyst
    :target: https://github.com/catalyst-cooperative/cheshire/actions?query=workflow%3Atox-pytest
    :alt: Tox-PyTest Status
 
+.. image:: https://github.com/catalyst-cooperative/cheshire/workflows/repo2docker/badge.svg
+   :target: https://github.com/catalyst-cooperative/cheshire/actions?query=workflow%3Arepo2docker
+   :alt: repo2docker Build Status
+
+.. image:: https://github.com/catalyst-cooperative/cheshire/workflows/docker-build-push/badge.svg
+   :target: https://github.com/catalyst-cooperative/cheshire/actions?query=workflow%3Adocker-build-push
+   :alt: Docker build status
+
 .. image:: https://img.shields.io/codecov/c/github/catalyst-cooperative/cheshire?style=flat&logo=codecov
    :target: https://codecov.io/gh/catalyst-cooperative/cheshire
    :alt: Codecov Test Coverage
@@ -203,6 +211,8 @@ look right so you can fix it.
   common problems like blanket ``# noqa`` annotations, as well as `language agnostic
   problems <https://github.com/pre-commit/pre-commit-hooks>`__ like accidentally
   checking large binary files into the repository or having unresolved merge conflicts.
+* `hadolint <https://github.com/AleksaC/hadolint-py>`__ checks Dockerfiles for errors
+  and violations of best practices. It runs as a pre-commit hook.
 
 Test Coverage
 -------------
@@ -293,7 +303,7 @@ GitHub Actions
 --------------
 Under ``.github/workflows`` are YAML files that configure the `GitHub Actions
 <https://docs.github.com/en/actions>`__ associated with the repository. We use GitHub
-Actions primarily to:
+Actions to:
 
 * Run continuous integration using `tox <https://tox.wiki>`__ on several different
   versions of Python.
@@ -304,6 +314,8 @@ Actions primarily to:
   and create new repository secrets to store your username and token called
   ``DOCKERHUB_USERNAME`` and ``DOCKERHUB_TOKEN`` and make sure that the Docker Hub
   repository you're trying to push to exists.
+* Build a Docker container directly and push it to Docker Hub using the
+  `docker-build-push action <https://github.com/docker/build-push-action>`__.
 
 About Catalyst Cooperative
 =======================================================================================
