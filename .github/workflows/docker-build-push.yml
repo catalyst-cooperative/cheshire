@@ -11,7 +11,7 @@ jobs:
 
       - name: Docker Metadata
         id: docker_metadata
-        uses: docker/metadata-action@v3.8.0
+        uses: docker/metadata-action@v4.0.1
         with:
           images: catalystcoop/cheshire-docker-build-push
           flavor: |
