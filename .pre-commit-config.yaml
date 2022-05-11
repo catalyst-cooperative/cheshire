@@ -51,7 +51,7 @@ repos:
 # Use built-in types for annotations as per PEP585, with __futures__ for Python 3.8/3.9
 # Note that this sometimes conflicts with Pydantic on Python 3.8/3.9
 - repo: https://github.com/sondrelg/pep585-upgrade
-  rev: 'v1.0.1'
+  rev: 'v1.0'
   hooks:
   - id: upgrade-type-hints
     args: ['--futures=true']
@@ -59,7 +59,7 @@ repos:
 # Update a bunch of Python syntax, using __futures__ for Python 3.8/3.9
 # Note that this sometimes conflicts with Pydantic on Python 3.8/3.9
 - repo: https://github.com/asottile/pyupgrade
-  rev: v2.32.0
+  rev: v2.32.1
   hooks:
   - id: pyupgrade
     args: ['--py38-plus']
