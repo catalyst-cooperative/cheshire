@@ -99,7 +99,7 @@ html_icon = "_static/favicon.ico"
 html_context = {
     "display_github": True,  # Integrate GitHub
     "github_user": "catalyst-cooperative",  # Username
-    "github_repo": "repo_name",  # Repo name
+    "github_repo": "cheshire",  # Repo name
     "github_version": "main",  # Version
     "conf_py_path": "/docs/",  # Path in the checkout to the docs root
 }
