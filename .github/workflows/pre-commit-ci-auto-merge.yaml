@@ -12,10 +12,9 @@ jobs:
     name: Auto-merge passing PRs from pre-commit-ci bot.
     runs-on: ubuntu-latest
     steps:
-      steps:
-      - name: Automerge passing pre-commit-ci PR
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        uses: ridedott/merge-me-action@v2
-        with:
-          GITHUB_LOGIN: pre-commit-ci
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Automerge passing pre-commit-ci PR
+      if: ${{ github.event.workflow_run.conclusion == 'success' }}
+      uses: ridedott/merge-me-action@v2
+      with:
+        GITHUB_LOGIN: pre-commit-ci
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
