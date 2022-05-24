@@ -32,8 +32,3 @@ def test_something(a: int, b: int, expected_c: int) -> None:
     """
     c = do_something(a, b)
     assert c == expected_c  # nosec: B101
-
-
-def test_failure() -> None:
-    """Make sure GitHub Actions do the right thing with failing tests."""
-    assert False  # nosec: B101
