@@ -9,10 +9,10 @@ on:
 
 jobs:
   bot-auto-merge:
-    name: Auto-merge passing PRs from pre-commit-ci bot.
+    name: Auto-merge passing pre-commit-ci PRs
     runs-on: ubuntu-latest
     steps:
-    - name: Automerge passing pre-commit-ci PR
+    - name: Auto-merge passing pre-commit-ci PRs
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
       uses: ridedott/merge-me-action@v2
       with:
