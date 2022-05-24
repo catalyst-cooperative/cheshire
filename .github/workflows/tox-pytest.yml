@@ -56,7 +56,7 @@ jobs:
             icon_emoji: ':octocat:',
             attachments: [{
               color: '${{ needs.ci-test.result }}' === 'success' ? 'good' : '${{ needs.ci-test.result }}' === 'failure' ? 'danger' : 'warning',
-              text: `${process.env.AS_WORKFLOW} (${process.env.AS_COMMIT})\n ${process.env.AS_REPO}@${process.env.AS_REF}\n from ${process.env.AS_AUTHOR}\n Status: ${{ needs.ci-test.result }}`,
+              text: `${process.env.AS_REPO}@${process.env.AS_REF}\n ${process.env.AS_WORKFLOW} (${process.env.AS_COMMIT})\n by ${process.env.AS_AUTHOR}\n Status: ${{ needs.ci-test.result }}`,
             }]
           }
       env:
