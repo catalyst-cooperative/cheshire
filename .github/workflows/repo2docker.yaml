@@ -8,7 +8,7 @@ jobs:
       run: echo "TODAY=$(TZ='America/Denver' date +'%Y.%m.%d')" >> $GITHUB_ENV
     - name: Checkout files in repo
       uses: actions/checkout@main
-    - name: Build pudl-jupyter docker image with repo2docker
+    - name: Build cheshire-repo2docker docker image with repo2docker
       uses: jupyterhub/repo2docker-action@master
       with:
         IMAGE_NAME: "catalystcoop/cheshire-repo2docker"
