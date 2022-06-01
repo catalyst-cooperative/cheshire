@@ -36,7 +36,7 @@ setup(
     # Use the format pkg_name>=x,<y", Included packages are just examples:
     install_requires=[
         "pandas>=1.4,<1.4.3",
-        "sqlalchemy>=1.4,<1.4.37",
+        "sqlalchemy>=1.4,<1.4.38",
     ],
     extras_require={
         "dev": [
