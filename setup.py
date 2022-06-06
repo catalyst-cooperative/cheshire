@@ -65,7 +65,7 @@ setup(
             "flake8-use-fstring>=1.0,<1.4",  # Highlight use of old-style string formatting
             "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
             "mypy>=0.942,<970",  # Static type checking
-            "pep8-naming>=0.12,<0.13",  # Require PEP8 compliant variable names
+            "pep8-naming>=0.12,<0.14",  # Require PEP8 compliant variable names
             "pre-commit>=2.9,<2.20",  # Allow us to run pre-commit hooks in testing
             "pydocstyle>=5.1,<6.2",  # Style guidelines for Python documentation
             "pytest>=6.2,<7.2",  # Our testing framework
