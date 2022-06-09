@@ -47,11 +47,10 @@ setup(
         ],
         "docs": [
             "doc8>=0.9,<0.12",  # Ensures clean documentation formatting
+            "furo>=2022.4.7",
             "sphinx>=4,<5.1",  # The default Python documentation redering engine
             "sphinx-autoapi>=1.8,<1.9",  # Generates documentation from docstrings
             "sphinx-issues>=1.2,<3.1",  # Allows references to GitHub issues
-            "sphinx-rtd-dark-mode>=1.2,<1.3",  # Allow user to toggle light/dark mode
-            "sphinx-rtd-theme>=1,<1.1",  # Standard Sphinx theme for Read The Docs
         ],
         "tests": [
             "bandit>=1.6,<1.8",  # Checks code for security issues
