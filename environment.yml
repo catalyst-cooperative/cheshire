@@ -18,8 +18,8 @@ dependencies:
 
   # Jupyter packages:
   - jupyterlab>=3.2,<4
-  - nbconvert>=6,<7  # Used to clear notebook outputs in pre-commit hooks
+  - nbconvert>=6,<7 # Used to clear notebook outputs in pre-commit hooks
 
   # Use pip to install the package defined by this repo for development:
   - pip:
-    - --editable ./[dev,docs,tests,types]
+      - --editable ./[dev,docs,tests,types]
