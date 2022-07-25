@@ -48,7 +48,7 @@ setup(
         "docs": [
             "doc8>=0.9,<0.12",  # Ensures clean documentation formatting
             "furo>=2022.4.7",
-            "sphinx>=4,<5.1",  # The default Python documentation redering engine
+            "sphinx>=4,!=5.1.0,<5.1.1",  # The default Python documentation engine
             "sphinx-autoapi>=1.8,<1.9",  # Generates documentation from docstrings
             "sphinx-issues>=1.2,<3.1",  # Allows references to GitHub issues
         ],
