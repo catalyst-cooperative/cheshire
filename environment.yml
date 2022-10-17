@@ -20,6 +20,9 @@ dependencies:
   - jupyterlab>=3.2,<4
   - nbconvert>=6,<7 # Used to clear notebook outputs in pre-commit hooks
 
+  # These are not normal Python packages available on PyPI
+  - nodejs # Useful for Jupyter and prettier pre-commit hook
+
   # Use pip to install the package defined by this repo for development:
   - pip:
       - --editable ./[dev,docs,tests,types]
