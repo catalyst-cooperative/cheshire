@@ -60,7 +60,7 @@ setup(
             "flake8-builtins>=1.5,<2.1",  # Avoid shadowing Python built-in names
             "flake8-colors>=0.1,<0.2",  # Produce colorful error / warning output
             "flake8-docstrings>=1.5,<1.7",  # Ensure docstrings are formatted well
-            "flake8-rst-docstrings>=0.2,<0.3",  # Allow use of ReST in docstrings
+            "flake8-rst-docstrings>=0.2,<0.4",  # Allow use of ReST in docstrings
             "flake8-use-fstring>=1.0,<1.5",  # Highlight use of old-style string formatting
             "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
             "mypy>=0.942,<0.992",  # Static type checking
