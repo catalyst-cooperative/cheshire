@@ -34,6 +34,15 @@ jobs:
           conda config --show
           printenv | sort
 
+      - name: Set default gcp credentials
+        id: gcloud-auth
+        continue-on-error: true
+        uses: "google-github-actions/auth@v1"
+        with:
+          # you'll need to update the WIF setup in pudl/terraform to allow actions from this repo to access the tox-pytest service account!
+          workload_identity_provider: "projects/345950277072/locations/global/workloadIdentityPools/gh-actions-pool/providers/gh-actions-provider"
+          service_account: "tox-pytest-github-action@catalyst-cooperative-pudl.iam.gserviceaccount.com"
+
       - name: Run PyTest with Tox
         run: |
           conda run -n cheshire tox
