@@ -100,7 +100,7 @@ repos:
 
   # Check for known security vulnerabilities:
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.4
+    rev: 1.7.5
     hooks:
       - id: bandit
     # Currently no configuration...
@@ -108,7 +108,7 @@ repos:
 
   # Use type annotations to check types
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.0.1
+    rev: v1.1.1
     hooks:
       - id: mypy
         additional_dependencies:
@@ -126,7 +126,7 @@ repos:
 
   # Lint any RST files and embedded code blocks for syntax / formatting errors
   - repo: https://github.com/rstcheck/rstcheck
-    rev: v6.1.1
+    rev: v6.1.2
     hooks:
       - id: rstcheck
         additional_dependencies: [sphinx]
