@@ -4,9 +4,9 @@ channels:
   - defaults
 dependencies:
   # Packages required for setting up the environment
-  - pip>=21,<23
+  - pip>=21,<24
   - python>=3.8,<3.12
-  - setuptools<66
+  - setuptools>=66,<68
 
   # Packages specified in setup.py that need or benefit from binary conda packages
   # - geopandas>=0.9,<0.11

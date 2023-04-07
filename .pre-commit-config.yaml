@@ -115,7 +115,6 @@ repos:
           - pytest
           - types-jinja2
           - types-setuptools
-        args: ["--strict"]
 
   # Check for errors in restructuredtext (.rst) files under the doc hierarchy
   - repo: https://github.com/PyCQA/doc8

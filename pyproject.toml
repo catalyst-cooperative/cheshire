@@ -1,10 +1,104 @@
 [build-system]
+build-backend = "setuptools.build_meta"
 requires = [
-    "setuptools<66",
-    "setuptools_scm[toml]>=3.5.0"
+    "setuptools>=66,<68",
+    "setuptools_scm[toml]>=3.5.0",
+    "wheel",
 ]
 
+[project]
+# This should be the *installed* package name e.g. catalystcoop.pudl not pudl
+name = "catalystcoop.cheshire"
+description = "A one line description of the package."
+readme = {file = "README.rst", content-type = "text/x-rst"}
+authors = [
+    {name = "Catalyst Cooperative", email = "pudl@catalyst.coop"}
+]
+requires-python = ">=3.8,<3.12"
+dynamic = ["version"]
+license = {file = "LICENSE.txt"}
+dependencies = [
+    "pandas>=1.5,<2.0",
+    "sqlalchemy>=1.4,<2.0",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+keywords = []
+
+[project.scripts]
+# "script_name = dotted.module.path.to:main_script_function",
+winston = "cheshire.cli:main"
+
+[project.urls]
+# "Homepage" = ""
+"Source" = "https://github.com/catalyst-cooperative/cheshire"
+"Documentation" = "https://catalystcoop-cheshire.readthedocs.io"
+"Issue Tracker" = "https://github.com/catalyst-cooperative/cheshire/issues"
+
+[project.optional-dependencies]
+dev = [
+    "build>=0.10,<0.11",  # The setuptools package builder
+    "black>=22.0,<23.4",  # A deterministic code formatter
+    "isort>=5.0,<5.13",  # Standardized import sorting
+    "tox>=4.0,<4.5",  # Python test environment manager
+    "twine>=3.3,<4.1",  # Used to make releases to PyPI
+]
+docs = [
+    "doc8>=0.9,<1.2",  # Ensures clean documentation formatting
+    "furo>=2022.4.7",
+    "sphinx>=4,!=5.1.0,<6.2",  # The default Python documentation engine
+    "sphinx-autoapi>=1.8,<2.2",  # Generates documentation from docstrings
+    "sphinx-issues>=1.2,<3.1",  # Allows references to GitHub issues
+
+]
+tests = [
+    "bandit>=1.6,<1.8",  # Checks code for security issues
+    "coverage>=5.3,<7.3",  # Lets us track what code is being tested
+    "doc8>=0.9,<1.2",  # Ensures clean documentation formatting
+    "flake8-builtins>=1.5,<2.2",  # Avoid shadowing Python built-in names
+    "flake8-colors>=0.1,<0.2",  # Produce colorful error / warning output
+    "flake8-docstrings>=1.5,<1.8",  # Ensure docstrings are formatted well
+    "flake8-rst-docstrings>=0.2,<0.4",  # Allow use of ReST in docstrings
+    "flake8-use-fstring>=1.0,<1.5",  # Highlight use of old-style string formatting
+    "flake8>=4.0,<6.1",  # A framework for linting & static analysis
+    "jupyter",  # For integration testing Jupyter notebooks
+    "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
+    "mypy>=1.0,<1.3",  # Static type checking
+    "nbconvert>=7,<8",
+    "nbformat>=5,<6",
+    "pep8-naming>=0.12,<0.14",  # Require PEP8 compliant variable names
+    "pre-commit>=2.9,<2.21",  # Allow us to run pre-commit hooks in testing
+    "pydocstyle>=5.1,<6.4",  # Style guidelines for Python documentation
+    "pytest-console-scripts>=1.1,<1.4",  # Allow automatic testing of scripts
+    "pytest-cov>=2.10,<4.1",  # Pytest plugin for working with coverage
+    "pytest>=6.2,<7.3",  # Our testing framework
+    "rstcheck[sphinx]>=5.0,<6.2",  # ReStructuredText linter
+    "tox>=4.0,<4.5",  # Python test environment manager
+]
+types = [
+    "types-setuptools",
+]
+
+
 [tool.setuptools_scm]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.black]
 line-length = 88
@@ -13,4 +107,4 @@ include = "\\.pyi?$"
 
 [tool.isort]
 profile = "black"
-known_first_party = ["cheshire", "pudl", "pudl_catalog"]
+known_first_party = ["cheshire", "pudl", "pudl_catalog", "ferc_xbrl_extractor"]
