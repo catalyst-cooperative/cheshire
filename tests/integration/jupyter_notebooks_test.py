@@ -12,9 +12,9 @@ from nbconvert.preprocessors import ExecutePreprocessor
         "notebooks/notebook.ipynb",
     ],
 )
-def test_notebook_exec(notebook: str):
+def test_notebook_exec(notebook: str, test_dir: Path):
     """Test that maintained notebooks can be executed."""
-    nb_path = Path(notebook)
+    nb_path = test_dir.parent / notebook
     with nb_path.open() as f:
         nb = nbformat.read(f, as_version=4)
         ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
