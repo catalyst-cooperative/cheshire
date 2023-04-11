@@ -18,7 +18,7 @@ requires-python = ">=3.8,<3.12"
 dynamic = ["version"]
 license = {file = "LICENSE.txt"}
 dependencies = [
-    "pandas>=1.5,<2.0",
+    "pandas>=1.5,<3.0",
     "sqlalchemy>=1.4,<3.0",
 ]
 classifiers = [
