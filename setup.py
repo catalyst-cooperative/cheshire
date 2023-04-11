@@ -36,7 +36,7 @@ setup(
     # Use the format pkg_name>=x,<y", Included packages are just examples:
     install_requires=[
         "pandas>=1.4,<2.0.1",
-        "sqlalchemy>=1.4,<2.0.9",
+        "sqlalchemy>=1.4,<2.0.10",
     ],
     extras_require={
         "dev": [
@@ -63,11 +63,11 @@ setup(
             "flake8-rst-docstrings>=0.2,<0.4",  # Allow use of ReST in docstrings
             "flake8-use-fstring>=1.0,<1.5",  # Highlight use of old-style string formatting
             "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
-            "mypy>=0.942,<1.2",  # Static type checking
+            "mypy>=0.942,<1.3",  # Static type checking
             "pep8-naming>=0.12,<0.14",  # Require PEP8 compliant variable names
             "pre-commit>=2.9,<3.3",  # Allow us to run pre-commit hooks in testing
             "pydocstyle>=5.1,<6.4",  # Style guidelines for Python documentation
-            "pytest>=6.2,<7.3",  # Our testing framework
+            "pytest>=6.2,<7.4",  # Our testing framework
             "pytest-console-scripts>=1.1,<1.4",  # Allow automatic testing of scripts
             "pytest-cov>=2.10,<4.1",  # Pytest plugin for working with coverage
             "rstcheck[sphinx]>=5.0,<6.2",  # ReStructuredText linter
