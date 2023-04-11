@@ -19,7 +19,7 @@ dynamic = ["version"]
 license = {file = "LICENSE.txt"}
 dependencies = [
     "pandas>=1.5,<2.0",
-    "sqlalchemy>=1.4,<2.0",
+    "sqlalchemy>=1.4,<3.0",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
