@@ -52,7 +52,7 @@ dev = [
     "build>=0.10,<0.11",  # The setuptools package builder
     "black>=22.0,<23.8",  # A deterministic code formatter
     "isort>=5.0,<5.13",  # Standardized import sorting
-    "tox>=4.0,<4.8",  # Python test environment manager
+    "tox>=4.0,<4.9",  # Python test environment manager
     "twine>=3.3,<4.1",  # Used to make releases to PyPI
 ]
 docs = [
@@ -85,7 +85,7 @@ tests = [
     "pytest-cov>=2.10,<4.2",  # Pytest plugin for working with coverage
     "pytest>=6.2,<7.5",  # Our testing framework
     "rstcheck[sphinx]>=5.0,<6.2",  # ReStructuredText linter
-    "tox>=4.0,<4.8",  # Python test environment manager
+    "tox>=4.0,<4.9",  # Python test environment manager
 ]
 types = [
     "types-setuptools",
