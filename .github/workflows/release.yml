@@ -20,7 +20,7 @@ jobs:
         run: |
           python -m pip install --upgrade build twine
           python -m build
-          twine check --string dist/*
+          twine check --strict dist/*
       - name: Store the distribution packages
         uses: actions/upload-artifact@v3
         with:
