@@ -44,7 +44,7 @@ jobs:
           name: python-package-distributions
           path: dist/
       - name: Publish distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@v1
+        uses: pypa/gh-action-pypi-publish@release/v1
 
   pypi-publish:
     name: Upload release to PyPI
@@ -64,7 +64,7 @@ jobs:
           name: python-package-distributions
           path: dist/
       - name: Publish distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@v1
+        uses: pypa/gh-action-pypi-publish@release/v1
 
   github-publish:
     name: Release package on GitHub
