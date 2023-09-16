@@ -1,7 +1,7 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-    "setuptools>=66,<68",
+    "setuptools>=66,<69",
     "setuptools_scm[toml]>=3.5.0",
     "wheel",
 ]
@@ -14,11 +14,11 @@ readme = {file = "README.rst", content-type = "text/x-rst"}
 authors = [
     {name = "Catalyst Cooperative", email = "pudl@catalyst.coop"}
 ]
-requires-python = ">=3.8,<3.12"
+requires-python = ">=3.10,<3.12"
 dynamic = ["version"]
 license = {file = "LICENSE.txt"}
 dependencies = [
-    "pandas>=1.5,<3.0",
+    "pandas>=1.5,<2.2",
     "sqlalchemy>=1.4,<3.0",
 ]
 classifiers = [
@@ -30,8 +30,6 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
 ]
@@ -49,7 +47,7 @@ winston = "cheshire.cli:main"
 
 [project.optional-dependencies]
 dev = [
-    "build>=0.10,<1.1",  # The setuptools package builder
+    "build>=1.0,<1.1",  # The setuptools package builder
     "black>=22.0,<23.10",  # A deterministic code formatter
     "isort>=5.0,<5.13",  # Standardized import sorting
     "tox>=4.0,<4.12",  # Python test environment manager
@@ -102,7 +100,7 @@ where = ["src"]
 
 [tool.black]
 line-length = 88
-target-version = ["py38", "py39", "py310", "py311"]
+target-version = ["py310", "py311"]
 include = "\\.pyi?$"
 
 [tool.isort]
