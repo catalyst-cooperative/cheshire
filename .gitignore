@@ -1,6 +1,7 @@
 # Catalyst specific files
 *.swp
 commit.txt
+**~
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
