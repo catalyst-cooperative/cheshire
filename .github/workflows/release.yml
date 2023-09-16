@@ -33,12 +33,9 @@ jobs:
     needs:
       - build
     runs-on: ubuntu-latest
-    # environment:
-    #  name: pypi
-    # url: https://pypi.org/p/catalystcoop.cheshire
     environment:
-      name: test-pypi
-      url: https://test.pypi.org/p/catalystcoop.cheshire
+      name: pypi
+      url: https://pypi.org/p/catalystcoop.cheshire
     permissions:
       id-token: write
     steps:
@@ -49,8 +46,6 @@ jobs:
           path: dist/
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
 
   github-publish:
     name: Release package on GitHub
@@ -66,7 +61,7 @@ jobs:
         with:
           name: python-package-distributions
           path: dist/
-      - name: Sign the dists with Sigstore
+      - name: Sign dist with Sigstore
         uses: sigstore/gh-action-sigstore-python@v2.0.1
         with:
           inputs: ./dist/*.tar.gz ./dist/*.whl
