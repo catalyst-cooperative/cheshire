@@ -9,7 +9,7 @@ requires = [
 [project]
 # This should be the *installed* package name e.g. catalystcoop.pudl not pudl
 name = "catalystcoop.cheshire"
-description = "A one line description of the package."
+description = "Replace this text with a one line description of the package."
 readme = {file = "README.rst", content-type = "text/x-rst"}
 authors = [
     {name = "Catalyst Cooperative", email = "pudl@catalyst.coop"}
@@ -18,8 +18,9 @@ requires-python = ">=3.10,<3.12"
 dynamic = ["version"]
 license = {file = "LICENSE.txt"}
 dependencies = [
-    "pandas>=1.5,<2.2",
-    "sqlalchemy>=1.4,<3.0",
+    "pandas[parquet,excel,fss,gcp,compression]>=2,<3",
+    "pydantic[email]>=2,<3",
+    "sqlalchemy>=2,<3",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -33,7 +34,14 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
 ]
-keywords = []
+keywords = [
+    "template",
+    "testing",
+    "linting",
+    "github actions",
+    "continuous integration",
+    "continuous delivery",
+]
 
 [project.scripts]
 # "script_name = dotted.module.path.to:main_script_function",
@@ -47,43 +55,33 @@ winston = "cheshire.cli:main"
 
 [project.optional-dependencies]
 dev = [
-    "build>=1.0,<1.1",  # The setuptools package builder
-    "black>=22.0,<23.10",  # A deterministic code formatter
-    "isort>=5.0,<5.13",  # Standardized import sorting
-    "tox>=4.0,<4.12",  # Python test environment manager
-    "twine>=3.3,<4.1",  # Used to make releases to PyPI
+    "build>=1,<2",  # The setuptools package builder
+    "black>=22,<24",  # A deterministic code formatter
+    "tox>=4,<5",  # Python test environment manager
+    "twine>=4,<5",  # Used to make releases to PyPI
 ]
 docs = [
-    "doc8>=0.9,<1.2",  # Ensures clean documentation formatting
+    "doc8>=1,<2",  # Ensures clean documentation formatting
     "furo>=2022.4.7",
-    "sphinx>=4,!=5.1.0,<7.3",  # The default Python documentation engine
-    "sphinx-autoapi>=1.8,<2.2",  # Generates documentation from docstrings
-    "sphinx-issues>=1.2,<3.1",  # Allows references to GitHub issues
+    "sphinx>=6,<8",  # The default Python documentation engine
+    "sphinx-autoapi>=2,<3",  # Generates documentation from docstrings
+    "sphinx-issues>=1.2,<2",  # Allows references to GitHub issues
 
 ]
 tests = [
-    "bandit>=1.6,<1.8",  # Checks code for security issues
-    "coverage>=5.3,<7.4",  # Lets us track what code is being tested
-    "doc8>=0.9,<1.2",  # Ensures clean documentation formatting
-    "flake8-builtins>=1.5,<2.2",  # Avoid shadowing Python built-in names
-    "flake8-colors>=0.1,<0.2",  # Produce colorful error / warning output
-    "flake8-docstrings>=1.5,<1.8",  # Ensure docstrings are formatted well
-    "flake8-rst-docstrings>=0.2,<0.4",  # Allow use of ReST in docstrings
-    "flake8-use-fstring>=1.0,<1.5",  # Highlight use of old-style string formatting
-    "flake8>=4.0,<6.2",  # A framework for linting & static analysis
+    "coverage>=7,<8",  # Lets us track what code is being tested
+    "exceptiongroup>=1,<2",
     "jupyter",  # For integration testing Jupyter notebooks
-    "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
     "mypy>=1.0,<1.6",  # Static type checking
     "nbconvert>=7,<8",
     "nbformat>=5,<6",
-    "pep8-naming>=0.12,<0.14",  # Require PEP8 compliant variable names
-    "pre-commit>=2.9,<3.5",  # Allow us to run pre-commit hooks in testing
-    "pydocstyle>=5.1,<6.4",  # Style guidelines for Python documentation
-    "pytest-console-scripts>=1.1,<1.5",  # Allow automatic testing of scripts
-    "pytest-cov>=2.10,<4.2",  # Pytest plugin for working with coverage
-    "pytest>=6.2,<7.5",  # Our testing framework
-    "rstcheck[sphinx]>=5.0,<6.3",  # ReStructuredText linter
-    "tox>=4.0,<4.12",  # Python test environment manager
+    "pre-commit>=3,<4",  # Allow us to run pre-commit hooks in testing
+    "pydocstyle>=6,<7",  # Style guidelines for Python documentation
+    "pytest-console-scripts>=1.1,<2",  # Allow automatic testing of scripts
+    "pytest-cov>=4,<5",  # Pytest plugin for working with coverage
+    "pytest>=7,<8",  # Our testing framework
+    "ruff>=0.0.290",  # A very fast python linter & autofixer
+    "tox>=4,<5",  # Python test environment manager
 ]
 types = [
     "types-setuptools",
@@ -103,6 +101,103 @@ line-length = 88
 target-version = ["py310", "py311"]
 include = "\\.pyi?$"
 
-[tool.isort]
-profile = "black"
-known_first_party = ["cheshire", "pudl", "pudl_catalog", "ferc_xbrl_extractor"]
+[tool.doc8]
+max-line-length = 88
+ignore-path = ["docs/_build"]
+
+[tool.pytest.ini_options]
+testpaths = "./"
+filterwarnings = [
+    # Examples of how to filter out pytest warnings from dependencies
+    # "ignore:distutils Version classes are deprecated:DeprecationWarning",
+    # "ignore:Deprecated call to `pkg_resources.declare_namespace:DeprecationWarning",
+    # "ignore:Deprecated call to.*declare_namespace:DeprecationWarning:pkg_resources",
+]
+
+addopts = "--verbose --pdbcls=IPython.terminal.debugger:TerminalPdb"
+log_format = "%(asctime)s [%(levelname)8s] %(name)s:%(lineno)s %(message)s"
+log_date_format = "%Y-%m-%d %H:%M:%S"
+log_cli = "true"
+log_cli_level = "DEBUG"
+doctest_optionflags = [
+    "NORMALIZE_WHITESPACE",
+    "IGNORE_EXCEPTION_DETAIL",
+    "ELLIPSIS",
+]
+
+[tool.ruff]
+select = [
+    "A", # flake8-builtins
+    # "ARG", # unused arguments
+    # "B",  # flake8-bugbear
+    "C",   # Limit cyclomatic complexity using mccabe
+    "D",   # pydocstyle errors
+    "E",   # pycodestyle errors
+    "EXE", # executable file issues
+    # "ERA", # eradicate: find commented out code
+    "F",   # pyflakes
+    "I",   # isort
+    "ISC", # implicit string concatenation
+    "N",   # pep8-naming
+    "NPY", # NumPy specific checks
+    "PD",  # pandas checks
+    "PGH", # pygrep-hooks
+    # "PL",  # pylint
+    # "PT",  # pytest style
+    "PTH", # use pathlib
+    "Q",   # flake8-quotes
+    "RET", # check return values
+    "RSE", # unnecessary parenthises on raised exceptions
+    "S",   # flake8-bandit
+    "SIM", # flake8-simplify
+    # "T",   # print statements found
+    "UP", # pyupgrade (use modern python syntax)
+    "W",  # pycodestyle warnings
+]
+ignore = [
+    "D401",   # Require imperative mood in docstrings.
+    "D417",
+    "E501",   # Overlong lines.
+    "PD003",  # Use of isna rather than isnull
+    "PD004",  # Use of notna rather than notnull
+    "PD010",  # Use of df.stack()
+    "PD013",  # Use of df.unstack()
+    "PD015",  # Use of pd.merge() rather than df.merge()
+    "PD901",  # df as variable name
+    "RET504", # Ignore unnecessary assignment before return
+    "S101",   # Use of assert
+]
+
+# Assume Python 3.11
+target-version = "py311"
+line-length = 88
+
+# Don't automatically concatenate strings -- sometimes we forget a comma!
+unfixable = ["ISC"]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]  # Ignore unused imports
+"tests/*" = ["D"]
+
+[tool.ruff.pep8-naming]
+# Allow Pydantic's `@validator` decorator to trigger class method treatment.
+classmethod-decorators = ["pydantic.validator", "pydantic.root_validator"]
+
+[tool.ruff.isort]
+known-first-party = ["pudl"]
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.ruff.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "double"
+multiline-quotes = "double"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true

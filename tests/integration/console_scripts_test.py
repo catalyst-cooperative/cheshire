@@ -13,7 +13,7 @@ ENTRY_POINTS = [
 
 @pytest.mark.parametrize("ep", ENTRY_POINTS)
 @pytest.mark.script_launch_mode("inprocess")
-def test_pudl_scripts(script_runner, ep: str) -> None:  # type: ignore
+def test_pudl_scripts(script_runner, ep: str) -> None:
     """Run each deployed console script with --help as a basic test.
 
     The script_runner fixture is provided by the pytest-console-scripts plugin.
@@ -32,7 +32,7 @@ def test_pudl_scripts(script_runner, ep: str) -> None:  # type: ignore
     ],
 )
 @pytest.mark.script_launch_mode("inprocess")
-def test_winston_args(script_runner, alpha: str, beta: str) -> None:  # type: ignore
+def test_winston_args(script_runner, alpha: str, beta: str) -> None:
     """Try running the script with bad inputs."""
     ret = script_runner.run("winston", "--alpha", alpha, "--beta", beta)
     assert ret.success  # nosec: B101
