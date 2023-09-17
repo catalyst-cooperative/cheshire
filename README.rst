@@ -7,10 +7,6 @@ Cheshire: a Python Template Repository for Catalyst
    :target: https://github.com/catalyst-cooperative/cheshire/actions?query=workflow%3Atox-pytest
    :alt: Tox-PyTest Status
 
-.. image:: https://github.com/catalyst-cooperative/cheshire/workflows/repo2docker/badge.svg
-   :target: https://github.com/catalyst-cooperative/cheshire/actions?query=workflow%3Arepo2docker
-   :alt: repo2docker Build Status
-
 .. image:: https://github.com/catalyst-cooperative/cheshire/workflows/docker-build-push/badge.svg
    :target: https://github.com/catalyst-cooperative/cheshire/actions?query=workflow%3Adocker-build-push
    :alt: Docker build status
@@ -83,7 +79,7 @@ conventions. We are using the ``catalystcoop`` namespace for the packages that w
 publish, so our ``pudl`` package becomes ``catalystcoop.pudl`` in the
 Python Package Index (PyPI) or on ``conda-forge``. Similarly the ``cheshire`` package
 becomes the ``catalystcoop.cheshire`` distribution. The distribution name is determined
-by the ``name`` argument in the call to ``setup()`` in ``setup.py``.
+by the ``project.name`` defined in ``pyproject.toml``
 
 .. code:: bash
 
@@ -118,22 +114,21 @@ Python Package Skeleton
 * What files are included in or excluded from the package on the user's system is
   controlled by the ``MANIFEST.in`` file and some options in the call to ``setup()`` in
   ``setup.py``.
-* The CLI is deployed using a ``console_script`` entrypoint defined in ``setup.py``.
+* The CLI is deployed using ``project.scripts`` defined in ``pyproject.toml``.
 * We use ``setuptools_scm`` to obtain the package's version directly from ``git`` tags,
   rather than storing it in the repository and manually updating it.
 * ``README.rst`` is read in and used for the pacakge's ``long_description``. This is
-  what is displayed on the PyPI page for the package. For example, see the
-  `PUDL Catalog <https://pypi.org/project/catalystcoop.pudl-catalog/0.1.0/>`__ page.
+  what is displayed on the PyPI page for the package.
 * By default we create at least three sets of "extras" -- additional optional package
   dependencies that can be installed in special circumstances: ``dev``, ``docs```, and
   ``tests``. The packages listed there are used in development, building the docs, and
   running the tests (respectively) but aren't required for a normal user who is just
-  installing the package from ``pip`` or ``conda``.
+  installing the package from ``pip`` or ``conda``. These are defined under the
+  ``project.optional-dependencies`` section of ``pyproject.toml``
 * Python has recently evolved a more diverse community of build and packaging tools.
   Which flavor is being used by a given package is indicated by the contents of
   ``pyproject.toml``. That file also contains configuration for a few other tools,
-  including ``black`` and ``isort``, described in the section on linters and formatters
-  below.
+  including ``black`` and ``ruff``.
 
 Pytest Testing Framework
 ------------------------
@@ -157,8 +152,6 @@ Test Coordination with Tox
   and releasing the software to PyPI.
 * The default Tox environment is named ``ci`` and it will run the linters, build the
   documentation, run all the tests, and generate test coverage statistics.
-* ``tox.ini`` also contains sections near the bottom which configure the behavior of
-  ``doc8``, ``flake8``, ``pytest``, and ``rstcheck``.
 
 Git Pre-commit Hooks
 --------------------
@@ -174,36 +167,26 @@ Git Pre-commit Hooks
   checks on any code that is pushed to GitHub, and to apply standard code formatting
   to the PR in case it hasn't been run locally prior to being committed.
 
-Code Formatting
----------------
+Code Formatting & Linting
+-------------------------
 To avoid the tedium of meticulously formatting all the code ourselves, and to ensure as
-standard style of formatting and sytactical idioms across the codebase, we use several
-automatic code formatters, which run as pre-commit hooks. Many of them can also be
-integrated direclty into your text editor or IDE with the appropriate plugins. The
-following formatters are included in the template ``.pre-commit-config.yaml``:
+standard style of formatting and sytactical idioms across the codebase, we use the
+``black`` and ``ruff`` code formatters, which run as pre-commit hooks. These can be
+integrated directly into your text editor or IDE with the appropriate plugins. The
+formatters are included in ``.pre-commit-config.yaml``. The ``ruff`` linter / formatter
+has a huge array of configuration options and different kinds of checks it can run,
+which are defined under the ``tool.ruff`` section of ``pyproject.toml``.
 
-* `Use only absolute import paths <https://github.com/MarcoGorelli/absolufy-imports>`__
-* `Standardize the sorting of imports <https://github.com/PyCQA/isort>`__
-* `Remove unneccesary f-strings <https://github.com/dannysepler/rm_unneeded_f_str>`__
-* `Upgrade type hints for built-in types <https://github.com/sondrelg/pep585-upgrade>`__
-* `Upgrade Python syntax <https://github.com/asottile/pyupgrade>`__
-* `Deterministic formatting with Black <https://github.com/psf/black>`__
-* We also have a custom hook that clears Jupyter notebook outputs prior to committing.
+We also have a custom hook that clears Jupyter notebook outputs prior to committing.
 
 Code & Documentation Linters
 ----------------------------
 To catch errors before commits are made, and to ensure uniform formatting across the
-codebase, we also use a bunch of different linters. They don't change the code or
+codebase, we also use linters outside of ``ruff``. They don't change the code or
 documentation files, but they will raise an error or warning when something doesn't
 look right so you can fix it.
 
-* `bandit <https://bandit.readthedocs.io/en/latest/>`__ identifies code patterns known
-  to cause security issues.
-* `doc8 <https://github.com/pycqa/doc8>`__ and `rstcheck
-  <https://github.com/myint/rstcheck>`__ look for formatting issues in our docstrings
-  and the standalone ReStructuredText (RST) files under the ``docs/`` directory.
-* `flake8 <https://github.com/PyCQA/flake8>`__ is an extensible Python linting
-  framework, with a bunch of plugins.
+* `doc8 <https://github.com/pycqa/doc8>`__
 * `mypy <https://mypy.readthedocs.io/en/stable/index.html>`__ Does static type checking,
   and ensures that our code uses type annotations.
 * `pre-commit <https://pre-commit.com>`__ has a collection of built-in checks that `use
@@ -216,7 +199,7 @@ look right so you can fix it.
 
 Test Coverage
 -------------
-* We use Tox and a the pytest `coverage <https://coverage.readthedocs.io/en/6.3.2/>`__
+* We use Tox and a the pytest `coverage <https://coverage.readthedocs.io/en/latest/>`__
   plugin to measure and record what percentage of our codebase is being tested, and to
   identify which modules, functions, and individual lines of code are not being
   exercised by the tests.
@@ -307,15 +290,10 @@ Actions to:
 
 * Run continuous integration using `tox <https://tox.wiki>`__ on several different
   versions of Python.
-* Build a Docker container with `repo2docker <https://github.com/marketplace/actions/repo2docker-action>`__
-  which encapsulates the conda environment defined by the top level ``environment.yml``
-  Note that for this action to succeed, you will need to
-  `create a personal access token on Docker Hub <https://docs.docker.com/docker-hub/access-tokens/>`__
-  and create new repository secrets to store your username and token called
-  ``DOCKERHUB_USERNAME`` and ``DOCKERHUB_TOKEN`` and make sure that the Docker Hub
-  repository you're trying to push to exists.
 * Build a Docker container directly and push it to Docker Hub using the
   `docker-build-push action <https://github.com/docker/build-push-action>`__.
+* Release a new version of the package on PyPI when a version tag is pushed.
+* Automatically merge bot PRs from pre-commit.ci and the dependabot.
 
 About Catalyst Cooperative
 =======================================================================================

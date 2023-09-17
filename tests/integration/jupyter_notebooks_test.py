@@ -3,7 +3,7 @@ from pathlib import Path
 
 import nbformat
 import pytest
-from nbconvert.preprocessors import ExecutePreprocessor
+from nbconvert.preprocessors.execute import ExecutePreprocessor
 
 
 @pytest.mark.parametrize(
