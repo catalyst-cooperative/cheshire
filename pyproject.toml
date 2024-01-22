@@ -65,7 +65,7 @@ docs = [
     "furo>=2022.4.7",
     "sphinx>=6,<8",  # The default Python documentation engine
     "sphinx-autoapi>=2,<4",  # Generates documentation from docstrings
-    "sphinx-issues>=1.2,<4",  # Allows references to GitHub issues
+    "sphinx-issues>=1.2,<5",  # Allows references to GitHub issues
 
 ]
 tests = [
