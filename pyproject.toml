@@ -56,7 +56,7 @@ winston = "cheshire.cli:main"
 [project.optional-dependencies]
 dev = [
     "build>=1,<2",  # The setuptools package builder
-    "black>=22,<24",  # A deterministic code formatter
+    "black>=22,<25",  # A deterministic code formatter
     "tox>=4,<5",  # Python test environment manager
     "twine>=4,<5",  # Used to make releases to PyPI
 ]
