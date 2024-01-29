@@ -1,4 +1,5 @@
 """Test any Jupyter notebooks in the repo that we're maintaining."""
+
 from pathlib import Path
 
 import nbformat
