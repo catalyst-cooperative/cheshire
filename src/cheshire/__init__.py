@@ -1,4 +1,5 @@
 """A template repository for a Python package created by Catalyst Cooperative."""
+
 import logging
 
 import pkg_resources

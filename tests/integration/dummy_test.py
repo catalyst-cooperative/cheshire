@@ -1,4 +1,5 @@
 """A dummy integration test so pytest has something to do."""
+
 import logging
 
 import pytest
