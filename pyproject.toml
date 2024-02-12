@@ -58,7 +58,7 @@ dev = [
     "build>=1,<2",  # The setuptools package builder
     "black>=22,<25",  # A deterministic code formatter
     "tox>=4,<5",  # Python test environment manager
-    "twine>=4,<5",  # Used to make releases to PyPI
+    "twine>=4,<6",  # Used to make releases to PyPI
 ]
 docs = [
     "doc8>=1,<2",  # Ensures clean documentation formatting
