@@ -3,6 +3,7 @@
 import logging
 
 import pytest
+
 from cheshire.dummy import do_something
 
 logger = logging.getLogger(__name__)
