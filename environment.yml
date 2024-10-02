@@ -1,12 +1,12 @@
+---
 name: cheshire
 channels:
   - conda-forge
-  - defaults
 dependencies:
   # Packages required for setting up the environment
-  - pip>=21,<24
-  - python>=3.10,<3.12
-  - setuptools>=66,<69
+  - pip>=21,<25
+  - python>=3.10,<3.13
+  - setuptools>=66
 
   # Packages specified in setup.py that need or benefit from binary conda packages
   # - geopandas>=0.9,<0.11
