@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.11"]
+        python-version: ["3.10", "3.11", "3.12"]
       fail-fast: false
     defaults:
       run:
@@ -27,7 +27,6 @@ jobs:
           condarc: |
             channels:
             - conda-forge
-            - defaults
             channel_priority: strict
 
       - shell: bash -l {0}

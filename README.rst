@@ -31,10 +31,6 @@ Cheshire: a Python Template Repository for Catalyst
    :target: https://pypi.org/project/catalystcoop.cheshire/
    :alt: Supported Python Versions
 
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-   :target: https://github.com/psf/black>
-   :alt: Any color you want, so long as it's black.
-
 This template repository helps make new Python projects easier to set up and more
 uniform. It contains a lot of infrastructure surrounding a minimal Python package named
 ``cheshire`` (the cat who isn't entirely there...).
@@ -128,7 +124,7 @@ Python Package Skeleton
 * Python has recently evolved a more diverse community of build and packaging tools.
   Which flavor is being used by a given package is indicated by the contents of
   ``pyproject.toml``. That file also contains configuration for a few other tools,
-  including ``black`` and ``ruff``.
+  including ``ruff``.
 
 Pytest Testing Framework
 ------------------------
@@ -171,7 +167,7 @@ Code Formatting & Linting
 -------------------------
 To avoid the tedium of meticulously formatting all the code ourselves, and to ensure as
 standard style of formatting and sytactical idioms across the codebase, we use the
-``black`` and ``ruff`` code formatters, which run as pre-commit hooks. These can be
+``ruff`` code linter and formatter, which runs as a pre-commit hook. These can be
 integrated directly into your text editor or IDE with the appropriate plugins. The
 formatters are included in ``.pre-commit-config.yaml``. The ``ruff`` linter / formatter
 has a huge array of configuration options and different kinds of checks it can run,
