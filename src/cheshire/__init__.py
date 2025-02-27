@@ -1,8 +1,7 @@
 """A template repository for a Python package created by Catalyst Cooperative."""
 
+import importlib.metadata
 import logging
-
-import pkg_resources
 
 # In order for the package modules to be available when you import the package,
 # they need to be imported here somehow. Not sure if this is best practice though.
@@ -14,7 +13,7 @@ __contact__ = "pudl@catalyst.coop"
 __maintainer__ = "Cheshire Cat"
 __license__ = "MIT License"
 __maintainer_email__ = "pudl@catalyst.coop"
-__version__ = pkg_resources.get_distribution("catalystcoop.cheshire").version
+__version__ = importlib.metadata.version("catalystcoop.cheshire")
 __docformat__ = "restructuredtext en"
 __description__ = "A template for Python package repositories."
 __long_description__ = """
