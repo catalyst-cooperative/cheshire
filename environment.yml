@@ -4,9 +4,9 @@ channels:
   - conda-forge
 dependencies:
   # Packages required for setting up the environment
-  - pip>=21,<25
-  - python>=3.10,<3.13
-  - setuptools>=66
+  - pip>=21,<26
+  - python>=3.10,<3.14
+  - setuptools>=75
 
   # Packages specified in setup.py that need or benefit from binary conda packages
   # - geopandas>=0.9,<0.11
@@ -18,8 +18,8 @@ dependencies:
   # - numba>=0.55.1,<0.57  # numba speeds up some kinds of math by 100x
 
   # Jupyter packages:
-  - jupyterlab>=3.2,<4
-  - nbconvert>=6,<7 # Used to clear notebook outputs in pre-commit hooks
+  - jupyterlab>=4,<5
+  - nbconvert>=7,<8 # Used to clear notebook outputs in pre-commit hooks
 
   # These are not normal Python packages available on PyPI
   - nodejs # Useful for Jupyter and prettier pre-commit hook

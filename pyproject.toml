@@ -1,7 +1,7 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-    "setuptools>=66",
+    "setuptools>=75",
     "setuptools_scm[toml]>=3.5.0",
     "wheel",
 ]
@@ -14,7 +14,7 @@ readme = {file = "README.rst", content-type = "text/x-rst"}
 authors = [
     {name = "Catalyst Cooperative", email = "pudl@catalyst.coop"}
 ]
-requires-python = ">=3.10,<3.13"
+requires-python = ">=3.10,<3.14"
 dynamic = ["version"]
 license = {file = "LICENSE.txt"}
 dependencies = [
@@ -34,6 +34,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 keywords = [
     "template",
@@ -62,10 +63,10 @@ dev = [
 ]
 docs = [
     "doc8>=1,<2",  # Ensures clean documentation formatting
-    "furo>=2022.4.7",
-    "sphinx>=6,<9",  # The default Python documentation engine
-    "sphinx-autoapi>=2,<4",  # Generates documentation from docstrings
-    "sphinx-issues>=1.2,<6",  # Allows references to GitHub issues
+    "furo>=2024,<2026",
+    "sphinx>=8,<9",  # The default Python documentation engine
+    "sphinx-autoapi>=3,<4",  # Generates documentation from docstrings
+    "sphinx-issues>=5,<6",  # Allows references to GitHub issues
 
 ]
 tests = [
@@ -80,7 +81,7 @@ tests = [
     "pytest-console-scripts>=1.1,<2",  # Allow automatic testing of scripts
     "pytest-cov>=4,<7",  # Pytest plugin for working with coverage
     "pytest>=7,<9",  # Our testing framework
-    "ruff>=0.6",  # A very fast python linter & autofixer
+    "ruff>=0.9",  # A very fast python linter & autofixer
     "tox>=4,<5",  # Python test environment manager
 ]
 types = [
