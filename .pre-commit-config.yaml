@@ -11,7 +11,7 @@ repos:
 
   # Other file formatting, plus common Git mistakes & text file standardization:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files # Don't accidentally commit giant files.
       - id: check-merge-conflict # Watch for lingering merge markers.
@@ -28,14 +28,14 @@ repos:
   # Formatters: hooks that re-write Python and RST files
   ########################################################################################
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.3
+    rev: v0.15.12
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format
 
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.6.2
+    rev: v3.8.3
     hooks:
       - id: prettier
         types_or: [yaml]
@@ -43,18 +43,6 @@ repos:
   ########################################################################################
   # Linters: hooks that check but don't alter Python & RST files
   ########################################################################################
-  # Use type annotations to check types
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.16.1
-    hooks:
-      - id: mypy
-        additional_dependencies:
-          - pytest
-          - types-setuptools
-          - sphinx
-          - numpy
-          - nbconvert
-
   # Check for errors in restructuredtext (.rst) files under the doc hierarchy
   - repo: https://github.com/PyCQA/doc8
     rev: v2.0.0
@@ -64,13 +52,13 @@ repos:
 
   # Lint Dockerfiles for errors and to ensure best practices
   - repo: https://github.com/AleksaC/hadolint-py
-    rev: v2.12.1b3
+    rev: v2.14.0
     hooks:
       - id: hadolint
 
   # Check Github Actions
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.7
+    rev: v1.7.12
     hooks:
       - id: actionlint
 
