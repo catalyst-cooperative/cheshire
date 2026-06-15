@@ -3,6 +3,7 @@
 It takes two numbers and does something to them, printing out the result.
 
 """
+
 from __future__ import annotations
 
 import argparse
@@ -26,7 +27,7 @@ def parse_command_line(argv: list[str]) -> argparse.Namespace:
 
     """
 
-    def formatter(prog) -> argparse.HelpFormatter:  # type: ignore
+    def formatter(prog) -> argparse.HelpFormatter:
         """This is a hack to create HelpFormatter with a particular width."""
         return argparse.HelpFormatter(prog, width=88)
 

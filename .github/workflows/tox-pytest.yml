@@ -1,3 +1,4 @@
+---
 name: tox-pytest
 
 on: [push, pull_request]
@@ -7,25 +8,27 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.12", "3.13", "3.14"]
       fail-fast: false
+    defaults:
+      run:
+        shell: bash -l {0}
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 2
 
       - name: Set up conda environment for testing
-        uses: conda-incubator/setup-miniconda@v2.2.0
+        uses: mamba-org/setup-micromamba@v2
         with:
-          miniforge-variant: Mambaforge
-          miniforge-version: latest
-          use-mamba: true
-          mamba-version: "*"
-          channels: conda-forge,defaults
-          channel-priority: true
-          python-version: ${{ matrix.python-version }}
-          activate-environment: cheshire
           environment-file: environment.yml
+          cache-environment: true
+          condarc: |
+            channels:
+            - conda-forge
+            channel_priority: strict
+
       - shell: bash -l {0}
         run: |
           conda info
@@ -37,7 +40,7 @@ jobs:
       - name: Set default gcp credentials
         id: gcloud-auth
         continue-on-error: true
-        uses: "google-github-actions/auth@v1"
+        uses: "google-github-actions/auth@v2"
         with:
           # you'll need to update the WIF setup in pudl/terraform to allow actions from this repo to access the tox-pytest service account!
           workload_identity_provider: "projects/345950277072/locations/global/workloadIdentityPools/gh-actions-pool/providers/gh-actions-provider"
@@ -45,10 +48,10 @@ jobs:
 
       - name: Run PyTest with Tox
         run: |
-          conda run -n cheshire tox
+          tox
 
       - name: Upload test coverage report to CodeCov
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v6
 
   ci-notify:
     runs-on: ubuntu-latest

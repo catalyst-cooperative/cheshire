@@ -1,9 +1,10 @@
 """Test any Jupyter notebooks in the repo that we're maintaining."""
+
 from pathlib import Path
 
 import nbformat
 import pytest
-from nbconvert.preprocessors import ExecutePreprocessor
+from nbconvert.preprocessors.execute import ExecutePreprocessor
 
 
 @pytest.mark.parametrize(

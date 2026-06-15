@@ -1,4 +1,5 @@
 """A dummy module so coverage has something to cover."""
+
 import logging
 
 logger = logging.getLogger(__name__)

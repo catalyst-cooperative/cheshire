@@ -1,4 +1,5 @@
 """A dummy unit test so pytest has something to do."""
+
 import logging
 from pathlib import Path
 
