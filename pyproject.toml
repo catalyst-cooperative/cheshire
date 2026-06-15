@@ -72,15 +72,14 @@ tests = [
     "coverage>=7,<8",  # Lets us track what code is being tested
     "exceptiongroup>=1,<2",
     "jupyter",  # For integration testing Jupyter notebooks
-    "mypy>=1.0,<1.21",  # Static type checking
     "nbconvert>=7,<8",
     "nbformat>=5,<6",
     "pre-commit>=4,<5",  # Allow us to run pre-commit hooks in testing
     "pydocstyle>=6,<7",  # Style guidelines for Python documentation
     "pytest-console-scripts>=1.1,<2",  # Allow automatic testing of scripts
-    "pytest-cov>=4,<7",  # Pytest plugin for working with coverage
+    "pytest-cov>=4,<8",  # Pytest plugin for working with coverage
     "pytest>=7,<10",  # Our testing framework
-    "ruff>=0.9",  # A very fast python linter & autofixer
+    "ruff>=0.15",  # A very fast python linter & autofixer
     "tox>=4,<5",  # Python test environment manager
 ]
 types = [
@@ -199,11 +198,6 @@ max-complexity = 10
 docstring-quotes = "double"
 inline-quotes = "double"
 multiline-quotes = "double"
-
-[tool.mypy]
-python_version = "3.13"
-warn_return_any = true
-warn_unused_configs = true
 
 [tool.coverage.report]
 precision = 2
