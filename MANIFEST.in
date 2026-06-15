@@ -6,6 +6,6 @@ prune notebooks
 prune docker
 
 global-exclude .gitignore .gitattributes .git-blame-ignore-revs
-global-exclude .bandit.yml .codecov.yml .coveragerc .mypy.ini
+global-exclude .bandit.yml .codecov.yml .coveragerc
 global-exclude .pre-commit-config.yaml .readthedocs.yml
 global-exclude docker-compose.yml

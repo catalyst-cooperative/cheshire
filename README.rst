@@ -183,8 +183,6 @@ documentation files, but they will raise an error or warning when something does
 look right so you can fix it.
 
 * `doc8 <https://github.com/pycqa/doc8>`__
-* `mypy <https://mypy.readthedocs.io/en/stable/index.html>`__ Does static type checking,
-  and ensures that our code uses type annotations.
 * `pre-commit <https://pre-commit.com>`__ has a collection of built-in checks that `use
   pygrep to search Python files <https://github.com/pre-commit/pygrep-hooks>`__ for
   common problems like blanket ``# noqa`` annotations, as well as `language agnostic
