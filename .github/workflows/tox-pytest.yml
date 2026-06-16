@@ -51,4 +51,4 @@ jobs:
           tox
 
       - name: Upload test coverage report to CodeCov
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v7
