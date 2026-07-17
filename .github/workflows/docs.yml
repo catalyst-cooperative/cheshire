@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  docs-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -35,9 +35,9 @@ jobs:
         with:
           path: site/
 
-  deploy:
+  docs-deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: build
+    needs: docs-build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
