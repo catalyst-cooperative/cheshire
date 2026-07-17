@@ -19,4 +19,5 @@ def test_notebook_exec(notebook: str, test_dir: Path):
     with nb_path.open() as f:
         nb = nbformat.read(f, as_version=4)
         ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
+        # pyrefly: ignore[bad-argument-type]  # nbformat's type stubs don't match its runtime types.
         _ = ep.preprocess(nb, resources={"Application": {"log_level": 5}})

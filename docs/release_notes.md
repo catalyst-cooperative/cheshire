@@ -1,0 +1,128 @@
+# PACKAGE_NAME Release Notes
+
+## X.Y.Z (YYYY-MM-DD)
+
+<!-- Copy this section to the top of the file for each new release: fill in the real
+version number and date above, and delete whichever subheadings below don't apply. -->
+
+### What's New?
+
+- Briefly describe the substantial changes to the code in here when you make a PR.
+- That way users (and future us) have documentation as to what's going on.
+- You can refer to the relevant pull request like this: [PR #1](https://github.com/catalyst-cooperative/cheshire/pull/1)
+- Don't hesitate to give shoutouts to folks who contributed, e.g. @cmgosnell
+- You can link to issues that were closed like this: [#2](https://github.com/catalyst-cooperative/cheshire/issues/2), [#3](https://github.com/catalyst-cooperative/cheshire/issues/3), [#4](https://github.com/catalyst-cooperative/cheshire/issues/4)
+
+### Bug Fixes
+
+- It's good to make a note of any known bugs that are fixed by the release, and refer
+    to the relevant issues.
+
+### Known Issues
+
+- It's also good to list any remaining known problems, and link to their issues too.
+
+## 0.5.0 (2026-07-16)
+
+### What's New?
+
+- Major modernization overhaul of the template's tooling:
+    - Replaced tox + conda with [pixi](https://pixi.sh) for environment and task
+        management (`pixi run test`, `lint`, `format`, `docs`, `build`).
+    - Replaced Sphinx/RST docs with [Zensical](https://zensical.org/) and Markdown,
+        including an API reference page rendered by `mkdocstrings`.
+    - Replaced `setuptools`/`setuptools_scm` with `hatchling`/`hatch-vcs`, so the
+        version still comes straight from git tags.
+    - Replaced `mypy` with [pyrefly](https://pyrefly.org/) for type checking.
+    - Switched from running `pre-commit` directly to running the same
+        `.pre-commit-config.yaml` via [prek](https://prek.j178.dev/), and added several
+        new hooks (`trailing-whitespace`, `detect-private-key`, `destroyed-symlinks`,
+        `check-json`, `no-commit-to-branch`, a few more `pygrep-hooks`, and
+        `mdformat-mkdocs`).
+    - Rewrote the GitHub Actions workflows: CI now runs through pixi (`pytest.yml`),
+        docs are built and published to GitHub Pages (`docs.yml`), Docker images are
+        only pushed for `main`/tags and only once tests pass (`docker-build-push.yml`),
+        and a new weekly `update-lockfiles.yml` refreshes `pixi.lock` and the
+        pre-commit hook pins.
+    - Converted `README.rst` to `README.md`, and added a template `AGENTS.md`
+        (symlinked from `CLAUDE.md`) with instructions for AI coding agents.
+    - Removed a pile of now-dead tooling and cruft: `tox.ini`, `environment.yml`,
+        `.readthedocs.yml`, `.coveragerc`, `MANIFEST.in`.
+    - Removed upper version bounds from our dependencies, relying on `pixi.lock` for
+        reproducibility instead.
+
+### Known Issues
+
+- Zensical and its `mkdocstrings` integration are both still pre-1.0 and may change.
+- Automatic API reference generation (e.g. via `mkdocs-gen-files`) isn't supported by
+    Zensical yet, so `docs/reference.md` has to be updated by hand for new modules.
+
+## 0.4.1 (2023-09-17)
+
+### What's New?
+
+- Adopt `ruff` for linting.
+
+## 0.4.0 (2023-09-16)
+
+### What's New?
+
+- Publish releases to real PyPI instead of TestPyPI.
+- Notify Slack when a new release is published.
+- Remove the old `repo2docker` workflow.
+
+## 0.3.4 (2023-09-15)
+
+### What's New?
+
+- Remove the obsolete `setup.py`; rely solely on `pyproject.toml`.
+
+## 0.3.3 (2023-09-15)
+
+### What's New?
+
+- Auto-generate GitHub release notes from merged PRs.
+
+## 0.3.2 (2023-09-15)
+
+### What's New?
+
+- Use `gh release create` instead of manually uploading release assets.
+
+## 0.3.1 (2023-09-15)
+
+### What's New?
+
+- Pin the Sigstore signing action to an exact version for reliable release signing.
+
+## 0.3.0 (2023-09-15)
+
+### What's New?
+
+- Release process housekeeping; no user-facing changes.
+
+## 0.2.1 (2023-09-15)
+
+### Bug Fixes
+
+- Fix the documentation deployment environment URL.
+
+## 0.2.0 (2023-09-15)
+
+### What's New?
+
+- Add a `Dockerfile`, `hadolint` linting, and the `docker-build-push` workflow.
+- Migrate to `rstcheck` 6.0.
+- Consolidate the CI, notification, and dependabot-merge jobs into distinct
+    workflows.
+
+## 0.1.0 (2022-04-29)
+
+### What's New?
+
+- This is the first fully functional and documented version of our template repository.
+
+### Known Issues
+
+- Need to get some user feedback!
+- Still need to look at updating our Code of Conduct. See [#12](https://github.com/catalyst-cooperative/cheshire/issues/12)
