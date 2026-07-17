@@ -1,0 +1,22 @@
+{
+  "name": "cheshire",
+  "image": "ghcr.io/prefix-dev/pixi:0.72.2",
+  // The base pixi image doesn't include git at all, which hatch-vcs needs (via
+  // .git) to derive the package version -- without it, `pixi install` fails.
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "remoteUser": "ubuntu",
+  "postCreateCommand": "pixi install && pixi run prek install",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "zensical docs (pixi run docs-serve)"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["charliermarsh.ruff", "ms-python.python"]
+    }
+  }
+}

@@ -2,7 +2,7 @@
 site_name = "Cheshire"
 site_description = "Replace this text with a one line description of the package."
 site_author = "Catalyst Cooperative"
-site_url = "https://catalyst-cooperative.github.io/cheshire"
+site_url = "https://docs.catalyst.coop/cheshire"
 copyright = """
 Copyright &copy; 2022-2026 Catalyst Cooperative, CC-BY-4.0
 """
@@ -43,6 +43,23 @@ toggle.name = "Switch to light mode"
 icon = "fontawesome/brands/github"
 link = "https://github.com/catalyst-cooperative/cheshire"
 
+[[project.extra.social]]
+icon = "fontawesome/brands/bluesky"
+link = "https://bsky.app/profile/catalyst.coop"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/mastodon"
+link = "https://mastodon.energy/@CatalystCoop"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/linkedin"
+link = "https://www.linkedin.com/company/catalyst-cooperative/"
+
+[[project.extra.social]]
+icon = "fontawesome/solid/donate"
+link = "https://opencollective.com/pudl"
+name = "Support us on Open Collective"
+
 # Renders API reference docs from docstrings on docs/reference.md via mkdocstrings,
 # which is currently a preliminary integration -- see
 # https://zensical.org/docs/setup/extensions/mkdocstrings/
@@ -69,7 +86,14 @@ anchor_linenums = true
 line_spans = "__span"
 pygments_lang_class = true
 [project.markdown_extensions.pymdownx.inlinehilite]
+# Enables shorthand references instead of full Markdown links: `#123` for issues,
+# `!123` for pull requests, `@user` for users, and raw commit SHAs -- all resolved
+# against the `user`/`repo` below unless another owner/repo is spelled out explicitly.
 [project.markdown_extensions.pymdownx.magiclink]
+repo_url_shorthand = true
+social_url_shorthand = true
+user = "catalyst-cooperative"
+repo = "cheshire"
 [project.markdown_extensions.pymdownx.snippets]
 base_path = ["."]
 check_paths = true

@@ -1,7 +1,11 @@
 ---
 name: pytest
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
 
 jobs:
   pytest:
@@ -20,7 +24,12 @@ jobs:
         run: pixi run test
 
       - name: Upload test coverage report to CodeCov
+        # CODECOV_TOKEN here is the catalyst-cooperative org's shared "Global Upload
+        # Token" (an organization-level secret, not a per-repo one -- see
+        # .codecov.yml), not a repo-specific secret we need to mint per project.
+        # Coverage reporting failing shouldn't fail this required check on its own,
+        # since it's orthogonal to whether the tests passed.
         uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
+          fail_ci_if_error: false

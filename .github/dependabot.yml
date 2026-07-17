@@ -1,15 +1,13 @@
 version: 2
 updates:
-  - package-ecosystem: "pip"
-    directory: "/"
-    target-branch: "main"
-    labels:
-      - "dependencies"
-    schedule:
-      interval: "daily"
-
+  # Python dependencies are refreshed weekly by .github/workflows/update-lockfiles.yml
+  # (pixi update + prek update) instead, so Dependabot doesn't manage those here.
   - package-ecosystem: "github-actions"
     directory: "/"
     target-branch: "main"
     schedule:
       interval: "daily"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
