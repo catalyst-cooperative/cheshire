@@ -93,6 +93,12 @@ repos:
     hooks:
       - id: hadolint
 
+  # Lint shell scripts for common bugs and portability issues
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+
   # Check Github Actions
   - repo: https://github.com/rhysd/actionlint
     rev: v1.7.12
@@ -114,8 +120,8 @@ repos:
         always_run: true
         entry: find notebooks \( -name \*.ipynb -not -name \*checkpoint.ipynb \) -type f -exec jupyter nbconvert --clear-output {} \;
       # Run the unit tests
-      - id: unit-tests
-        name: unit-tests
+      - id: pytest
+        name: pytest
         stages: [pre-commit]
         language: system
         verbose: false
@@ -133,5 +139,5 @@ ci:
   autoupdate_branch: main
   autoupdate_commit_msg: "[pre-commit.ci] pre-commit autoupdate"
   autoupdate_schedule: weekly
-  skip: [unit-tests, nb-output-clear]
+  skip: [pytest, nb-output-clear]
   submodules: false

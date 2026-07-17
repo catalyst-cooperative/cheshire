@@ -19,17 +19,26 @@ def test_pudl_scripts(script_runner, ep: importlib.metadata.EntryPoint) -> None:
     assert ret.success  # nosec: B101
 
 
+@pytest.mark.parametrize("alpha,beta", [("2", "2")])
+@pytest.mark.script_launch_mode("inprocess")
+def test_winston_valid_args(script_runner, alpha: str, beta: str) -> None:
+    """Running the script with valid integer arguments should succeed."""
+    ret = script_runner.run(["winston", "--alpha", alpha, "--beta", beta])
+    assert ret.success  # nosec: B101
+
+
 @pytest.mark.parametrize(
     "alpha,beta",
     [
-        ("2", "2"),
-        pytest.param("a", "2", marks=pytest.mark.xfail),
-        pytest.param("2", "b", marks=pytest.mark.xfail),
-        pytest.param("a", "b", marks=pytest.mark.xfail),
+        ("a", "2"),
+        ("2", "b"),
+        ("a", "b"),
     ],
 )
 @pytest.mark.script_launch_mode("inprocess")
-def test_winston_args(script_runner, alpha: str, beta: str) -> None:
-    """Try running the script with bad inputs."""
+def test_winston_invalid_args(script_runner, alpha: str, beta: str) -> None:
+    """Non-integer arguments should be rejected by argparse, not silently accepted."""
     ret = script_runner.run(["winston", "--alpha", alpha, "--beta", beta])
-    assert ret.success  # nosec: B101
+    assert not ret.success  # nosec: B101
+    assert ret.returncode == 2  # nosec: B101
+    assert "invalid int value" in ret.stderr
