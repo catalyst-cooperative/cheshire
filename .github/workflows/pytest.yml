@@ -1,7 +1,11 @@
 ---
 name: pytest
 
-on: [push, pull_request, merge_group]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
 
 jobs:
   pytest:
