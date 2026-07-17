@@ -1,4 +1,4 @@
-FROM condaforge/mambaforge:4.12.0-0
+FROM ghcr.io/prefix-dev/pixi:0.72.2
 
 # Create a non-root user inside the container
 RUN useradd -Ums /bin/bash catalyst
@@ -10,17 +10,11 @@ COPY --chown=catalyst:catalyst . /home/catalyst/cheshire
 USER catalyst
 WORKDIR /home/catalyst/cheshire
 
-# Create a conda environment based on the specification in the repo
+# Create the pixi environment based on the specification in pyproject.toml.
 # We need information from .git to get version with setuptools_scm so we mount that
 # directory without copying it into the image.
 RUN --mount=type=bind,source=.git,target=/home/catalyst/cheshire/.git \
-        # mamba create can't read environment.yml, and mamba env isn't installed yet,
-        # so we create a bare py3.10 env first:
-        mamba create --name cheshire --yes python=3.10 && \
-    # Then we can use mamba env update, which can parse the environment.yml file:
-    mamba env update --name cheshire --file environment.yml && \
-    conda clean -afy && \
-    conda run --name cheshire pip install --no-cache-dir -e './[dev,docs,tests]'
+    pixi install
 
 # Run the tests to verify that everything is functioning:
-CMD ["conda", "run", "--name", "cheshire", "tox"]
+CMD ["pixi", "run", "test"]

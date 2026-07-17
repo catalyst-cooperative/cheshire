@@ -107,7 +107,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env_tox/
 .env
 .venv
 env/
@@ -116,6 +115,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# pixi
+.pixi/
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -123,8 +125,11 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
+# zensical documentation
 /site
+
+# ruff
+.ruff_cache/
 
 
 # Pyre type checker

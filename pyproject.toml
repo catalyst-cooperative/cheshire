@@ -1,47 +1,42 @@
 [build-system]
-build-backend = "setuptools.build_meta"
-requires = [
-    "setuptools>=75",
-    "setuptools_scm[toml]>=3.5.0",
-    "wheel",
-]
+build-backend = "hatchling.build"
+requires = ["hatch-vcs>=0.5", "hatchling>=1.31"]
 
 [project]
 # This should be the *installed* package name e.g. catalystcoop.pudl not pudl
 name = "catalystcoop.cheshire"
 description = "Replace this text with a one line description of the package."
-readme = {file = "README.rst", content-type = "text/x-rst"}
-authors = [
-    {name = "Catalyst Cooperative", email = "pudl@catalyst.coop"}
-]
-requires-python = ">=3.12,<3.15"
+readme = { file = "README.md", content-type = "text/markdown" }
+authors = [{ name = "Catalyst Cooperative", email = "pudl@catalyst.coop" }]
+requires-python = ">=3.14,<3.15"
 dynamic = ["version"]
-license = {file = "LICENSE.txt"}
+license = { file = "LICENSE.txt" }
 dependencies = [
-    "pandas[parquet,excel,fss,gcp,compression]>=2,<4",
-    "pydantic[email]>=2,<3",
-    "sqlalchemy>=2,<3",
+  "pandas[parquet,excel,fss,gcp,compression]>=3.0.3",
+  "pydantic[email]>=2.13.4",
+  "polars>=1.42.1",
+  "duckdb>=1.5.4",
+  "pyarrow>=25.0.0",
+  "pandera>=0.32.1",
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Environment :: Console",
-    "License :: OSI Approved :: MIT License",
-    "Natural Language :: English",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.14",
 ]
 keywords = [
-    "template",
-    "testing",
-    "linting",
-    "github actions",
-    "continuous integration",
-    "continuous delivery",
+  "template",
+  "testing",
+  "linting",
+  "github actions",
+  "continuous integration",
+  "continuous delivery",
 ]
 
 [project.scripts]
@@ -51,77 +46,70 @@ winston = "cheshire.cli:main"
 [project.urls]
 # "Homepage" = ""
 "Source" = "https://github.com/catalyst-cooperative/cheshire"
-"Documentation" = "https://catalystcoop-cheshire.readthedocs.io"
+"Documentation" = "https://catalyst-cooperative.github.io/cheshire"
 "Issue Tracker" = "https://github.com/catalyst-cooperative/cheshire/issues"
 
 [project.optional-dependencies]
 dev = [
-    "build>=1,<2",  # The setuptools package builder
-    "tox>=4,<5",  # Python test environment manager
-    "twine>=4,<7",  # Used to make releases to PyPI
+  "build>=1.5.0", # PEP 517 build frontend, used to build the sdist/wheel
+  "prek>=0.4.10", # Fast Rust-based pre-commit hook runner
+  "twine>=6.2.0", # Used to make releases to PyPI
 ]
 docs = [
-    "doc8>=1,<3",  # Ensures clean documentation formatting
-    "furo>=2024,<2026",
-    "sphinx>=8,<10",  # The default Python documentation engine
-    "sphinx-autoapi>=3,<4",  # Generates documentation from docstrings
-    "sphinx-issues>=5,<7",  # Allows references to GitHub issues
-
+  "mkdocstrings-python>=2.0.5", # Renders API docs from docstrings, used by zensical
+  "zensical>=0.0.50",           # Markdown-based static site generator for docs
+]
+lint = [
+  "mdformat-mkdocs>=5", # Stops mdformat from mangling zensical/MkDocs markdown syntax
+  "ruff>=0.15.22",      # A very fast python linter & autofixer
 ]
 tests = [
-    "coverage>=7,<8",  # Lets us track what code is being tested
-    "exceptiongroup>=1,<2",
-    "jupyter",  # For integration testing Jupyter notebooks
-    "nbconvert>=7,<8",
-    "nbformat>=5,<6",
-    "pre-commit>=4,<5",  # Allow us to run pre-commit hooks in testing
-    "pydocstyle>=6,<7",  # Style guidelines for Python documentation
-    "pytest-console-scripts>=1.1,<2",  # Allow automatic testing of scripts
-    "pytest-cov>=4,<8",  # Pytest plugin for working with coverage
-    "pytest>=7,<10",  # Our testing framework
-    "ruff>=0.15",  # A very fast python linter & autofixer
-    "tox>=4,<5",  # Python test environment manager
+  "coverage>=7.15.2",              # Lets us track what code is being tested
+  "exceptiongroup>=1.3.1",
+  "jupyter>=1.1.1",                # For integration testing Jupyter notebooks
+  "nbconvert>=7.17.1",
+  "nbformat>=5.10.4",
+  "pytest-console-scripts>=1.4.1", # Allow automatic testing of scripts
+  "pytest-cov>=7.1.0",             # Pytest plugin for working with coverage
+  "pytest>=9.1.1",                 # Our testing framework
 ]
 types = [
-    "types-setuptools",
+  "pyrefly>=1.1.1", # Fast Rust-based Python type checker
 ]
 
+[tool.hatch.version]
+# Derive the package version from the latest git tag, rather than storing it in the
+# repository and manually updating it.
+source = "vcs"
 
-[tool.setuptools_scm]
+[tool.hatch.build.targets.wheel]
+# hatchling can't auto-detect the package directory here because the distribution
+# name (catalystcoop.cheshire) doesn't match the importable package name (cheshire).
+packages = ["src/cheshire"]
 
-[tool.setuptools]
-include-package-data = true
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.doc8]
-max-line-length = 88
-ignore-path = ["docs/_build"]
-
-[tool.pytest.ini_options]
-testpaths = "./"
+[tool.pytest]
+testpaths = ["."]
 filterwarnings = [
-    # Examples of how to filter out pytest warnings from dependencies
-    # "ignore:distutils Version classes are deprecated:DeprecationWarning",
-    # "ignore:Deprecated call to `pkg_resources.declare_namespace:DeprecationWarning",
-    # "ignore:Deprecated call to.*declare_namespace:DeprecationWarning:pkg_resources",
+  # Examples of how to filter out pytest warnings from dependencies
+  # "ignore:distutils Version classes are deprecated:DeprecationWarning",
+  # "ignore:Deprecated call to `pkg_resources.declare_namespace:DeprecationWarning",
+  # "ignore:Deprecated call to.*declare_namespace:DeprecationWarning:pkg_resources",
 ]
 
-addopts = "--verbose --pdbcls=IPython.terminal.debugger:TerminalPdb"
+addopts = ["--verbose", "--pdbcls=IPython.terminal.debugger:TerminalPdb"]
 log_format = "%(asctime)s [%(levelname)8s] %(name)s:%(lineno)s %(message)s"
 log_date_format = "%Y-%m-%d %H:%M:%S"
-log_cli = "true"
+log_cli = true
 log_cli_level = "DEBUG"
 doctest_optionflags = [
-    "NORMALIZE_WHITESPACE",
-    "IGNORE_EXCEPTION_DETAIL",
-    "ELLIPSIS",
+  "NORMALIZE_WHITESPACE",
+  "IGNORE_EXCEPTION_DETAIL",
+  "ELLIPSIS",
 ]
 
 [tool.ruff]
 # Configurations that apply to both the `format` and `lint` subcommands.
-target-version = "py313"
+target-version = "py314"
 line-length = 88
 indent-width = 4
 
@@ -135,50 +123,49 @@ line-ending = "auto"
 
 [tool.ruff.lint]
 select = [
-    "A", # flake8-builtins
-    "B",  # flake8-bugbear
-    "C",   # Limit cyclomatic complexity using mccabe
-    "C4", # flake8-comprehensions
-    "D",   # pydocstyle errors
-    "E",   # pycodestyle errors
-    "EXE", # executable file issues
-    "F",   # pyflakes
-    "I",   # isort
-    "ICN", # flake8 import conventions
-    "N",   # pep8-naming
-    "NPY", # NumPy specific checks
-    "PD",  # pandas checks
-    "PGH", # pygrep-hooks
-    "PIE", # flake8-pie miscellaneous linting
-    "PTH", # use pathlib
-    "Q",   # flake8-quotes
-    "RET", # check return values
-    "RSE", # unnecessary parenthises on raised exceptions
-    "S",   # flake8-bandit
-    "SIM", # flake8-simplify
-    "UP", # pyupgrade (use modern python syntax)
-    "W",  # pycodestyle warnings
-    # "ARG", # unused arguments
-    # "ERA", # eradicate: find commented out code
-    # "PL",  # pylint
-    # "PT",  # pytest style
-    # "T",   # print statements found
+  "A",   # flake8-builtins
+  "B",   # flake8-bugbear
+  "C",   # Limit cyclomatic complexity using mccabe
+  "C4",  # flake8-comprehensions
+  "D",   # pydocstyle errors
+  "E",   # pycodestyle errors
+  "EXE", # executable file issues
+  "F",   # pyflakes
+  "I",   # isort
+  "ICN", # flake8 import conventions
+  "N",   # pep8-naming
+  "NPY", # NumPy specific checks
+  "PD",  # pandas checks
+  "PGH", # pygrep-hooks
+  "PIE", # flake8-pie miscellaneous linting
+  "PTH", # use pathlib
+  "Q",   # flake8-quotes
+  "RET", # check return values
+  "RSE", # unnecessary parenthises on raised exceptions
+  "S",   # flake8-bandit
+  "SIM", # flake8-simplify
+  "UP",  # pyupgrade (use modern python syntax)
+  "W",   # pycodestyle warnings
+  # "ARG", # unused arguments
+  # "ERA", # eradicate: find commented out code
+  # "PL",  # pylint
+  # "PT",  # pytest style
+  # "T",   # print statements found
 ]
 ignore = [
-    "D401",   # Require imperative mood in docstrings.
-    "D417",
-    "E501",   # Overlong lines.
-    "PD010",  # Use of df.stack()
-    "PD013",  # Use of df.unstack()
-    "PD015",  # Use of pd.merge() rather than df.merge()
-    "PD901",  # df as variable name
-    "RET504", # Ignore unnecessary assignment before return
-    "S101",   # Use of assert
+  "D401",   # Require imperative mood in docstrings.
+  "D417",
+  "E501",   # Overlong lines.
+  "PD010",  # Use of df.stack()
+  "PD013",  # Use of df.unstack()
+  "PD015",  # Use of pd.merge() rather than df.merge()
+  "RET504", # Ignore unnecessary assignment before return
+  "S101",   # Use of assert
 ]
 extend-select = ["NPY201"] # preview rule to easy migration to Numpy 2.0
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401"]  # Ignore unused imports
+"__init__.py" = ["F401"] # Ignore unused imports
 "tests/*" = ["D"]
 
 [tool.ruff.lint.pep8-naming]
@@ -186,7 +173,7 @@ extend-select = ["NPY201"] # preview rule to easy migration to Numpy 2.0
 classmethod-decorators = ["pydantic.validator", "pydantic.root_validator"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["pudl"]
+known-first-party = ["cheshire"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
@@ -204,18 +191,102 @@ precision = 2
 sort = "miss"
 skip_empty = true
 fail_under = 90
+# fail_under is enforced once, after unit and integration coverage are combined, by
+# the final "coverage report" invocation in the `test` pixi task below -- not here,
+# since pytest-cov would otherwise also enforce it after unit or integration tests
+# run on their own, before the other suite gets a chance to contribute its coverage.
 exclude_lines = [
-    # Have to re-enable the standard pragma
-    "pragma: no cover",
+  # Have to re-enable the standard pragma
+  "pragma: no cover",
 
-    # Don't complain if tests don't hit defensive assertion code:
-    "raise AssertionError",
-    "raise NotImplementedError",
+  # Don't complain if tests don't hit defensive assertion code:
+  "raise AssertionError",
+  "raise NotImplementedError",
 
-    # Don't complain if non-runnable code isn't run:
-    "if 0:",
-    "if __name__ == .__main__.:",
+  # Don't complain if non-runnable code isn't run:
+  "if 0:",
+  "if __name__ == .__main__.:",
 
-    # Stuff that's not expected to run normally...
-    "logger.debug",
+  # Stuff that's not expected to run normally...
+  "logger.debug",
 ]
+
+[tool.pyrefly]
+# Limited to "src" so the pre-commit hook -- which only installs pyrefly itself,
+# not the rest of our dependencies -- can still resolve imports. `pixi run lint`
+# widens this to also check "tests", since it runs in an environment that has
+# every dependency installed.
+project-includes = ["src"]
+python-version = "3.14"
+
+[tool.pixi.workspace]
+channels = ["conda-forge", "bioconda"]
+platforms = ["osx-arm64", "linux-64", "osx-64"]
+
+[tool.pixi.pypi-dependencies]
+# Install this package itself in editable mode, pulling in every optional-dependency
+# group defined above (see [project.optional-dependencies]) so the whole development
+# toolchain is available. Spelled out explicitly here, rather than relying on pixi's
+# implicit "a feature with the same name as an extra pulls in that extra" behavior,
+# so it's obvious at a glance which extras are actually installed.
+"catalystcoop.cheshire" = { path = ".", editable = true, extras = [
+  "dev",
+  "docs",
+  "lint",
+  "tests",
+  "types",
+] }
+
+# Non-Python formatting tools that aren't published to PyPI, so they can't be
+# expressed as project.optional-dependencies extras and added above.
+[tool.pixi.feature.lint.dependencies]
+markdownlint-cli2 = ">=0.23.0"
+mdformat = ">=1.0.0"
+mdformat-gfm = ">=1.0.0"
+prettier = ">=3.9.3"
+taplo = ">=0.10.0"
+
+# A single environment with everything needed for local development, since this is a
+# small template repository that doesn't benefit from separate per-task environments.
+# "lint" is the only named feature to add here -- it's the one place we need conda
+# (rather than PyPI) packages -- everything else comes from the extras listed above.
+[tool.pixi.environments]
+default = { features = ["lint"], solve-group = "default" }
+
+[tool.pixi.tasks]
+test-erase = "coverage erase"
+test-unit = { cmd = "pytest --cov=cheshire --cov-append --cov-report=xml --cov-fail-under=0 --doctest-modules src/cheshire tests/unit", depends-on = [
+  "test-erase",
+] }
+test-integration = { cmd = "pytest --cov=cheshire --cov-append --cov-report=xml --cov-fail-under=0 tests/integration", depends-on = [
+  "test-erase",
+] }
+test = { cmd = "coverage report --sort=cover", depends-on = [
+  "test-unit",
+  "test-integration",
+] }
+
+lint-ruff = "ruff check ."
+lint-pyrefly = "pyrefly check src tests"
+lint = { depends-on = ["lint-ruff", "lint-pyrefly"] }
+
+format-ruff = "ruff format . && ruff check --fix ."
+format-toml = "taplo fmt pyproject.toml zensical.toml"
+format-md = "mdformat README.md AGENTS.md docs"
+format-yaml = "prettier --write '**/*.{yaml,yml}'"
+format = { depends-on = [
+  "format-ruff",
+  "format-toml",
+  "format-md",
+  "format-yaml",
+] }
+
+docs = "zensical build"
+docs-serve = "zensical serve"
+
+# Bump the `rev` pins in .pre-commit-config.yaml to their latest tagged versions.
+# Used by .github/workflows/update-lockfiles.yml; see also `pixi update` for
+# refreshing pixi.lock itself.
+prek-update = "prek update"
+
+build = "python -m build && twine check --strict dist/*"

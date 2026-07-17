@@ -1,0 +1,78 @@
+[project]
+site_name = "Cheshire"
+site_description = "Replace this text with a one line description of the package."
+site_author = "Catalyst Cooperative"
+site_url = "https://catalyst-cooperative.github.io/cheshire"
+copyright = """
+Copyright &copy; 2022-2026 Catalyst Cooperative, CC-BY-4.0
+"""
+docs_dir = "docs"
+
+nav = [
+  { "Home" = "index.md" },
+  { "API Reference" = "reference.md" },
+  { "Code of Conduct" = "code_of_conduct.md" },
+  { "Release Notes" = "release_notes.md" },
+  { "License" = "license.md" },
+]
+
+[project.theme]
+language = "en"
+logo = "_static/catalyst_logo-200x200.png"
+favicon = "_static/favicon.ico"
+
+features = [
+  "content.code.copy",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.top",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/catalyst-cooperative/cheshire"
+
+# Renders API reference docs from docstrings on docs/reference.md via mkdocstrings,
+# which is currently a preliminary integration -- see
+# https://zensical.org/docs/setup/extensions/mkdocstrings/
+[project.plugins.mkdocstrings.handlers.python]
+inventories = ["https://docs.python.org/3/objects.inv"]
+paths = ["src"]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+docstring_style = "google"
+show_source = true
+
+[project.markdown_extensions.abbr]
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.pymdownx.betterem]
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.magiclink]
+[project.markdown_extensions.pymdownx.snippets]
+base_path = ["."]
+check_paths = true
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true

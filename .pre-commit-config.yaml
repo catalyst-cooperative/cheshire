@@ -4,10 +4,12 @@ repos:
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
-      - id: rst-backticks # Find single rather than double backticks
-      - id: rst-directive-colons # Missing double-colons after directives
-      - id: rst-inline-touching-normal # Inline code should never touch normal text
       - id: python-use-type-annotations # Use annotations not old-style type comments
+      - id: python-check-blanket-noqa # Require noqa comments to specify an error code.
+      - id: python-check-blanket-type-ignore # Require type: ignore to specify a code.
+      - id: python-no-log-warn # Use logger.warning() instead of deprecated logger.warn()
+      - id: python-no-eval # Flag uses of the eval() builtin.
+      - id: text-unicode-replacement-char # Catch mangled-encoding artifacts.
 
   # Other file formatting, plus common Git mistakes & text file standardization:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -17,18 +19,25 @@ repos:
       - id: check-merge-conflict # Watch for lingering merge markers.
       - id: check-yaml # Validate all YAML files.
       - id: check-toml
+      - id: check-json # Validate all JSON files, including Jupyter notebooks.
       - id: check-case-conflict # Avoid case sensitivity in file names.
+      - id: check-illegal-windows-names # Avoid filenames that break on Windows.
+      - id: destroyed-symlinks # Catch symlinks (e.g. CLAUDE.md) silently replaced with copies.
       - id: debug-statements # Watch for lingering debugger calls.
+      - id: detect-private-key # Don't accidentally commit private keys.
+      - id: trailing-whitespace # Strip trailing whitespace, beyond what ruff covers in .py files.
       - id: mixed-line-ending # Only newlines, no line-feeds.
         args: ["--fix=lf"]
       - id: name-tests-test # Follow PyTest naming convention.
       - id: end-of-file-fixer
+      - id: no-commit-to-branch # Discourage committing directly to main; PRs only.
+        args: ["--branch", "main"]
 
   ########################################################################################
-  # Formatters: hooks that re-write Python and RST files
+  # Formatters: hooks that re-write Python, TOML, YAML, and Markdown files
   ########################################################################################
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.21
+    rev: v0.15.22
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
@@ -40,15 +49,35 @@ repos:
       - id: prettier
         types_or: [yaml]
 
-  ########################################################################################
-  # Linters: hooks that check but don't alter Python & RST files
-  ########################################################################################
-  # Check for errors in restructuredtext (.rst) files under the doc hierarchy
-  - repo: https://github.com/PyCQA/doc8
-    rev: v2.0.0
+  - repo: https://github.com/ComPWA/taplo-pre-commit
+    rev: v0.9.3
     hooks:
-      - id: doc8
-        args: ["--config", "pyproject.toml"]
+      - id: taplo-format
+
+  - repo: https://github.com/hukkin/mdformat
+    rev: 1.0.0
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-gfm
+          # Without this, mdformat mangles zensical/MkDocs-flavored markdown syntax,
+          # e.g. escaping the "<" in docs/index.md's "--8<--" snippet-include line.
+          - mdformat-mkdocs
+
+  ########################################################################################
+  # Linters: hooks that check but don't alter Python, Markdown, & Dockerfiles
+  ########################################################################################
+  # Check Markdown files for style issues
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.23.1
+    hooks:
+      - id: markdownlint-cli2
+
+  # Type check the Python code using Pyrefly
+  - repo: https://github.com/facebook/pyrefly-pre-commit
+    rev: 1.2.0.dev2
+    hooks:
+      - id: pyrefly-check
 
   # Lint Dockerfiles for errors and to ensure best practices
   - repo: https://github.com/AleksaC/hadolint-py
@@ -84,7 +113,7 @@ repos:
         verbose: false
         pass_filenames: false
         always_run: true
-        entry: pytest --doctest-modules src/cheshire tests/unit
+        entry: pixi run test
 
 # Configuration for pre-commit.ci
 ci:
