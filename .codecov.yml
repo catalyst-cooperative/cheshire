@@ -10,11 +10,11 @@ codecov:
   # our repos rather than minted per-repo. Do not commit a real token here.
   require_ci_to_pass: true
   notify:
-    after_n_builds: 3
+    after_n_builds: 1
     wait_for_ci: true
 
 comment:
-  after_n_builds: 3
+  after_n_builds: 1
 
 github_checks:
   annotations: false
