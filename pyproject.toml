@@ -46,7 +46,7 @@ winston = "cheshire.cli:main"
 [project.urls]
 # "Homepage" = ""
 "Source" = "https://github.com/catalyst-cooperative/cheshire"
-"Documentation" = "https://catalyst-cooperative.github.io/cheshire"
+"Documentation" = "https://docs.catalyst.coop/cheshire"
 "Issue Tracker" = "https://github.com/catalyst-cooperative/cheshire/issues"
 
 [project.optional-dependencies]

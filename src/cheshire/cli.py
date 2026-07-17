@@ -4,8 +4,6 @@ It takes two numbers and does something to them, printing out the result.
 
 """
 
-from __future__ import annotations
-
 import argparse
 import logging
 import sys

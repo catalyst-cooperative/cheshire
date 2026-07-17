@@ -113,6 +113,13 @@ whether the agent should skip them, mock them, or ask a human to run them.
     `::: module.path` line to `docs/reference.md` for any new module that should appear
     in the API reference; it is not automatic.
 - Update `docs/release_notes.md` for user-facing changes.
+- Write prose using semantic linefeeds (one sentence, or one independent clause, per
+    line) rather than hard-wrapping at a fixed column. This keeps diffs to the
+    sentence that actually changed instead of reflowing the whole paragraph.
+    `mdformat` won't fight this -- its default `wrap: keep` behavior preserves
+    whatever line breaks are already there rather than rejoining and rewrapping
+    paragraphs -- but nothing enforces it automatically either, so it's on you (or
+    the agent) to actually break lines this way when writing new prose.
 
 <!--
 If this project has other documentation conventions -- a changelog format, ADRs, a

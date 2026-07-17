@@ -5,7 +5,7 @@
 [![pytest](https://github.com/catalyst-cooperative/cheshire/actions/workflows/pytest.yml/badge.svg)](https://github.com/catalyst-cooperative/cheshire/actions/workflows/pytest.yml)
 [![docker-build-push](https://github.com/catalyst-cooperative/cheshire/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/catalyst-cooperative/cheshire/actions/workflows/docker-build-push.yml)
 [![Codecov Test Coverage](https://img.shields.io/codecov/c/github/catalyst-cooperative/cheshire?style=flat&logo=codecov)](https://codecov.io/gh/catalyst-cooperative/cheshire)
-[![Documentation](https://img.shields.io/github/deployments/catalyst-cooperative/cheshire/github-pages?style=flat&logo=githubpages&label=docs)](https://catalyst-cooperative.github.io/cheshire)
+[![Documentation](https://img.shields.io/github/deployments/catalyst-cooperative/cheshire/github-pages?style=flat&logo=githubpages&label=docs)](https://docs.catalyst.coop/cheshire)
 [![PyPI Latest Version](https://img.shields.io/pypi/v/catalystcoop.cheshire?style=flat&logo=python)](https://pypi.org/project/catalystcoop.cheshire/)
 [![conda-forge Version](https://img.shields.io/conda/vn/conda-forge/catalystcoop.cheshire?style=flat&logo=condaforge)](https://anaconda.org/conda-forge/catalystcoop.cheshire)
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/catalystcoop.cheshire?style=flat&logo=python)](https://pypi.org/project/catalystcoop.cheshire/)
@@ -105,8 +105,7 @@ editor. The name of the package directory under `src/` will also need to be chan
 ### Environment & Task Management with Pixi
 
 - We use [pixi](https://pixi.sh) to manage the development environment and the tasks
-    used to test, lint, format, and document the project, replacing the old
-    conda + tox combination.
+    used to test, lint, format, and document the project.
 - Run `pixi install` once to create the environment described in `pyproject.toml`
     (under `[tool.pixi.*]`), then use `pixi run <task>` to run any of the tasks defined
     under `[tool.pixi.tasks]`.
@@ -117,9 +116,9 @@ editor. The name of the package directory under `src/` will also need to be chan
     - `pixi run format` -- automatically reformat the code and other files using `ruff`,
         `taplo`, `mdformat`, and `prettier`.
     - `pixi run docs` -- build the documentation with `zensical`.
-- Unlike the old tox/conda setup, there's a single `default` pixi environment that
-    contains everything needed for local development, since splitting a small template
-    repository into many environments adds more complexity than it saves.
+- There's a single `default` pixi environment that contains everything needed for
+    local development, since splitting a small template repository into many
+    environments adds more complexity than it saves.
 - This package is installed into that environment in editable mode via
     `[tool.pixi.pypi-dependencies]`, which explicitly lists every extra from
     `project.optional-dependencies` (`dev`, `docs`, `lint`, `tests`, `types`) that
@@ -128,6 +127,18 @@ editor. The name of the package directory under `src/` will also need to be chan
     `lint`, exists only to add a few non-Python formatting tools (`taplo`, `prettier`,
     `mdformat`, etc.) that aren't published to PyPI and so can't be expressed as an
     extra.
+
+### Devcontainer
+
+- `.devcontainer/devcontainer.json` defines a basic, editor-agnostic
+    [development container](https://containers.dev/): the same `ghcr.io/prefix-dev/pixi`
+    image used in `docker/Dockerfile`, with `git` added (the base image doesn't include
+    it, and `pixi install` needs it to derive the package version from `git` tags) and
+    `pixi install` / `pixi run prek install` run automatically once the container
+    starts. It works with VS Code, JetBrains Gateway, GitHub Codespaces, or the
+    standalone [devcontainer CLI](https://github.com/devcontainers/cli) -- useful for
+    giving a coding agent (or a human) an isolated, reproducible, disposable sandbox to
+    work in instead of your host machine.
 
 ### Pytest Testing Framework
 
@@ -148,9 +159,9 @@ editor. The name of the package directory under `src/` will also need to be chan
 - A variety of sanity checks are defined as git pre-commit hooks -- they run any time
     you try to make a commit, to catch common issues before they are saved. Many of these
     hooks are taken from the excellent [pre-commit project](https://pre-commit.com/).
-- The hooks are configured in `.pre-commit-config.yaml`, but are run using
-    [prek](https://prek.j178.dev/), a much faster, dependency-free, drop-in replacement
-    for the `pre-commit` command line tool.
+- The hooks are configured in `.pre-commit-config.yaml`, and run using
+    [prek](https://prek.j178.dev/), a much faster, dependency-free tool that reads that
+    same standard config format.
 - For them to run automatically when you try to make a commit, you **must** install
     the hooks in your cloned repository first by running `pixi run prek install`. This
     only has to be done once.
@@ -176,9 +187,9 @@ We also have a custom hook that clears Jupyter notebook outputs prior to committ
 
 ### Type Checking
 
-We use [pyrefly](https://pyrefly.org/), a fast Rust-based type checker, instead of
-`mypy`. It's configured under the `tool.pyrefly` section of `pyproject.toml` and run
-via `pixi run lint`.
+We use [pyrefly](https://pyrefly.org/), a fast Rust-based type checker. It's
+configured under the `tool.pyrefly` section of `pyproject.toml` and run via
+`pixi run lint`.
 
 ### Code & Documentation Linters
 
@@ -219,16 +230,12 @@ look right so you can fix it.
     subpackages, modules, and individual lines are being tested. For example, here are
     the results
     [for the cheshire repo](https://app.codecov.io/gh/catalyst-cooperative/cheshire).
-- The connection to CodeCov is configured in the `.codecov.yml` YAML file.
-- In theory, we should be able to automatically turn CodeCov on for all of our GitHub
-    repos, and it should Just Work, but in practice we've had to turn it on in the GitHub
-    configuration one-by-one. Open source repositories are also supposed to be able to
-    upload to the CodeCov site without requiring authentication, but this also hasn't
-    worked, so thus far we've needed to request a new token for each repository. This
-    token is stored in `.codecov.yml`.
-- Once it's enabled, CodeCov also adds a couple of test coverage checks to any pull
-    request, to alert us if a PR reduces overall test coverage (which we would like to
-    avoid).
+- The connection to CodeCov is configured in the `.codecov.yml` YAML file. Uploads
+    authenticate with the `catalyst-cooperative` org's shared "Global Upload Token,"
+    stored as an organization-level `CODECOV_TOKEN` secret in GitHub, so individual
+    repos don't need their own CodeCov token minted and stored separately.
+- CodeCov also adds a couple of test coverage checks to any pull request, to alert us
+    if a PR reduces overall test coverage (which we would like to avoid).
 
 ### Documentation Builds
 
@@ -261,10 +268,10 @@ look right so you can fix it.
 
 We use GitHub's
 [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates)
-to automatically update the allowable versions of packages we depend on. This applies
-to both the Python dependencies specified in `pyproject.toml` and to the versions of
-the [GitHub Actions](https://docs.github.com/en/actions) that we employ. The
-dependabot behavior is configured in `.github/dependabot.yml`.
+to automatically update the versions of the
+[GitHub Actions](https://docs.github.com/en/actions) that we employ, configured in
+`.github/dependabot.yml`. Our Python dependencies are refreshed separately, by the
+weekly `update-lockfiles` GitHub Action described below, instead of by Dependabot.
 
 ### GitHub Actions
 
@@ -281,7 +288,8 @@ We use GitHub Actions to:
     early. It's only pushed to Docker Hub for `main` and version tags, so branches and
     PRs don't clutter the registry with images nobody will pull.
 - Release a new version of the package on PyPI when a version tag is pushed to `main`.
-- Automatically merge bot PRs from pre-commit.ci and Dependabot.
+- Approve and enable auto-merge on bot PRs from pre-commit.ci and Dependabot, using
+    `gh pr merge --auto`, which respects our merge queue and required status checks.
 - Refresh `pixi.lock` and the `rev` pins in `.pre-commit-config.yaml` weekly, opening
     a PR with the changes so CI can confirm the updated dependencies still work.
 
