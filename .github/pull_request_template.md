@@ -10,7 +10,7 @@ Closes #XXXX
 
 Make sure to update relevant aspects of the documentation:
 
-- [ ] Update the [release notes](https://docs.catalyst.coop/pudl/en/nightly/release_notes.html): reference the PR and related issues.
+- [ ] Update the release notes; reference the PR and related issues.
 - [ ] Review and update any other aspects of the documentation that might be affected by this PR.
 
 ## Testing
