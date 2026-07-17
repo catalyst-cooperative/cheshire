@@ -35,6 +35,16 @@ jobs:
             echo "push=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Determine package version from git tags
+        # hatch-vcs normally derives the version from `.git`, but can't reliably do
+        # that from inside a Docker build (see docker/Dockerfile for why). Compute it
+        # here instead, where the full git history checked out above is available,
+        # and pass it into the build as PACKAGE_VERSION.
+        id: version
+        run: |
+          python3 -m pip install --quiet setuptools-scm
+          echo "version=$(python3 -m setuptools_scm)" >> "$GITHUB_OUTPUT"
+
       - name: Docker Metadata
         id: docker_metadata
         uses: docker/metadata-action@v6.1.0
@@ -68,3 +78,5 @@ jobs:
           push: ${{ steps.should-push.outputs.push == 'true' }}
           tags: ${{ steps.docker_metadata.outputs.tags }}
           labels: ${{ steps.docker_metadata.outputs.labels }}
+          build-args: |
+            PACKAGE_VERSION=${{ steps.version.outputs.version }}

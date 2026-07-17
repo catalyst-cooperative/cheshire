@@ -221,7 +221,7 @@ python-version = "3.14"
 
 [tool.pixi.workspace]
 channels = ["conda-forge", "bioconda"]
-platforms = ["osx-arm64", "linux-64", "osx-64"]
+platforms = ["linux-aarch64", "osx-arm64", "linux-64", "osx-64", "win-64"]
 
 [tool.pixi.pypi-dependencies]
 # Install this package itself in editable mode, pulling in every optional-dependency
