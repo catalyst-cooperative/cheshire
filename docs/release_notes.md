@@ -9,9 +9,9 @@ version number and date above, and delete whichever subheadings below don't appl
 
 - Briefly describe the substantial changes to the code in here when you make a PR.
 - That way users (and future us) have documentation as to what's going on.
-- You can refer to the relevant pull request like this: [PR #1](https://github.com/catalyst-cooperative/cheshire/pull/1)
+- You can refer to the relevant pull request like this: !1
 - Don't hesitate to give shoutouts to folks who contributed, e.g. @cmgosnell
-- You can link to issues that were closed like this: [#2](https://github.com/catalyst-cooperative/cheshire/issues/2), [#3](https://github.com/catalyst-cooperative/cheshire/issues/3), [#4](https://github.com/catalyst-cooperative/cheshire/issues/4)
+- You can link to issues that were closed like this: #2, #3, #4
 
 ### Bug Fixes
 
@@ -21,6 +21,74 @@ version number and date above, and delete whichever subheadings below don't appl
 ### Known Issues
 
 - It's also good to list any remaining known problems, and link to their issues too.
+
+## 0.5.3 (2026-07-17)
+
+### What's New?
+
+- Moved the "What this template provides" tooling documentation out of `README.md`
+    and into a new `docs/tools.md` page, linked from a short list in the README, so
+    the README stays focused on getting started and the docs site carries the
+    in-depth tooling reference.
+- Added the [shellcheck](https://github.com/shellcheck-py/shellcheck-py) pre-commit
+    hook to catch common bugs and portability issues in any shell scripts added to the
+    repo.
+- Renamed the local `unit-tests` pre-commit hook to `pytest` for clarity.
+
+### Bug Fixes
+
+- Fixed `test_winston_args` in `tests/integration/console_scripts_test.py`, which was
+    marking non-integer CLI arguments as `xfail` even though rejecting them is the
+    correct, intended behavior. Split it into `test_winston_valid_args` and
+    `test_winston_invalid_args`, with the latter asserting the expected failure
+    (non-zero exit code and an "invalid int value" error) so it reports a real PASS
+    instead of masking the backwards assertion with `xfail`.
+- Removed a stale link to PUDL's release notes page from the PR template's
+    documentation checklist; it now just says to update the release notes.
+
+## 0.5.2 (2026-07-17)
+
+### What's New?
+
+- Added basic `.github/ISSUE_TEMPLATE/task.md` and `.github/pull_request_template.md`
+    templates (!540).
+- Excluded `dependabot[bot]` and `pre-commit-ci[bot]` authored PRs from GitHub's
+    auto-generated release notes, via a new `.github/release.yml`, so only
+    substantive PRs show up there (!541).
+
+### Bug Fixes
+
+- Disabled `markdownlint`'s `MD025` front-matter-title heuristic, which was flagging
+    a false "multiple top-level headings" error on `title:` keys in GitHub issue
+    template front matter.
+- Added the `mdformat-frontmatter` plugin so `mdformat` recognizes YAML front matter
+    (used by the new issue/PR templates) instead of mangling its `---` delimiters into
+    thematic breaks.
+
+## 0.5.1 (2026-07-17)
+
+### What's New?
+
+- Replaced the archived `tibdex/github-app-token` action with the official
+    `actions/create-github-app-token`, and replaced `ridedott/merge-me-action` with
+    `gh pr merge --auto`, which is documented to be merge-queue-aware.
+- Switched `bot-auto-merge` to trigger on `pull_request_target` (restricted to the
+    `dependabot`/`pre-commit-ci` actors) instead of `workflow_run`.
+- Grouped all `github-actions` ecosystem Dependabot updates into a single PR, and
+    dropped the `pip` ecosystem entry (Python dependencies are refreshed weekly by
+    `update-lockfiles.yml` instead).
+- Added `.devcontainer/devcontainer.json`, a basic editor-agnostic
+    [development container](https://containers.dev/).
+- Pointed the docs badge/links at the intended `docs.catalyst.coop/cheshire` URL, and
+    added real social links (BlueSky, Mastodon, LinkedIn, Open Collective) to the docs
+    footer.
+- Enabled `pymdownx.magiclink` shorthand (`#123`, `@user`, etc. auto-link to GitHub).
+
+### Bug Fixes
+
+- Switched CodeCov uploads to the org's shared "Global Upload Token" instead of a
+    stale hardcoded per-repo token, and stopped coverage-upload failures from failing
+    the required `pytest` check. (!537)
 
 ## 0.5.0 (2026-07-16)
 
@@ -125,4 +193,4 @@ version number and date above, and delete whichever subheadings below don't appl
 ### Known Issues
 
 - Need to get some user feedback!
-- Still need to look at updating our Code of Conduct. See [#12](https://github.com/catalyst-cooperative/cheshire/issues/12)
+- Still need to look at updating our Code of Conduct. See #12
