@@ -112,7 +112,22 @@ whether the agent should skip them, mock them, or ask a human to run them.
 - API reference docs are generated from docstrings via `mkdocstrings` -- add a new
     `::: module.path` line to `docs/reference.md` for any new module that should appear
     in the API reference; it is not automatic.
-- Update `docs/release_notes.md` for user-facing changes.
+- Update `docs/release_notes.md` for user-facing changes, but never write real content
+    into the `## X.Y.Z (YYYY-MM-DD)` section at the top of the file -- that's a
+    reusable template (see the HTML comment inside it), not a place to record actual
+    changes. Add your change to the first real, numbered section below it instead,
+    which represents the upcoming/unreleased version; create that section (by copying
+    the template) if it doesn't already exist. Use `pymdownx.magiclink` shorthand for
+    PR/issue references (`!123` for a pull request, `#123` for an issue) rather than
+    full GitHub URLs.
+- Don't trust the file's existing top section number alone to know what the next
+    version is -- it can lag behind reality (e.g. a release cut and tagged without the
+    file being updated to match). Before adding or creating an unreleased section, run
+    `git tag --sort=-v:refname | head -1` to find the actual most-recently-released
+    version, and base the next number on that instead. This repo bumps the patch
+    version (the `Z` in `X.Y.Z`) for ordinary PRs; only bump minor/major if asked to.
+    If the version you're about to write already exists as a tag, stop and reconcile
+    the mismatch (e.g. by asking) rather than silently overwriting or renumbering.
 - Write prose using semantic linefeeds (one sentence, or one independent clause, per
     line) rather than hard-wrapping at a fixed column. This keeps diffs to the
     sentence that actually changed instead of reflowing the whole paragraph.
