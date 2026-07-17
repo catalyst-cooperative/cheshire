@@ -1,0 +1,9 @@
+---
+# Configures GitHub's auto-generated release notes (used by `gh release create
+# --generate-notes` in .github/workflows/release.yml):
+# https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
+changelog:
+  exclude:
+    authors:
+      - dependabot[bot]
+      - pre-commit-ci[bot]
