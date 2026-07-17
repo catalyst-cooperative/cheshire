@@ -16,10 +16,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Verify the tag was cut from main
+      - name: Verify the tag points at the current HEAD of main
+        # Checking ancestry (e.g. `git branch --remotes --contains`) isn't enough --
+        # any commit reachable from main passes that check, including a stale local
+        # main that's behind origin. Require an exact match against origin/main's
+        # current tip instead, so tagging from a stale local checkout fails loudly.
         run: |
-          if ! git branch --remotes --contains "${{ github.sha }}" | grep -qx '  origin/main'; then
-            echo "::error::Tag ${{ github.ref_name }} does not point at a commit on main."
+          main_sha="$(git rev-parse origin/main)"
+          if [[ "${{ github.sha }}" != "$main_sha" ]]; then
+            echo "::error::Tag ${{ github.ref_name }} (${{ github.sha }}) does not point at the current HEAD of main ($main_sha). Pull the latest main and re-tag."
             exit 1
           fi
 

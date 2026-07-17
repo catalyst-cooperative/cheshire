@@ -3,7 +3,14 @@
 ## X.Y.Z (YYYY-MM-DD)
 
 <!-- Copy this section to the top of the file for each new release: fill in the real
-version number and date above, and delete whichever subheadings below don't apply. -->
+version number and date above, and delete whichever subheadings below don't apply.
+
+Agents: don't fill in real content here -- this is a reusable template, not a place to
+record actual changes. Add your change to the section for the upcoming/unreleased
+version instead: that's the first real, numbered `## X.Y.Z (YYYY-MM-DD)` section below
+this one. If it doesn't exist yet, create it (with a placeholder date, or the expected
+release date if known) by copying this template immediately below it, same as you
+would when cutting an actual release. See AGENTS.md's Documentation section for more. -->
 
 ### What's New?
 
@@ -22,7 +29,17 @@ version number and date above, and delete whichever subheadings below don't appl
 
 - It's also good to list any remaining known problems, and link to their issues too.
 
-## 0.5.3 (2026-07-17)
+## 0.5.5 (2026-07-17)
+
+### Bug Fixes
+
+- Fixed the `build-package-release` workflow's pre-release check, which only
+    verified the tagged commit was an *ancestor* of `main` -- true of any past commit
+    on `main`, including a stale local `main` that's behind `origin`. It now requires
+    an exact match against `origin/main`'s current tip, so tagging from a stale local
+    checkout fails loudly instead of silently releasing an old commit.
+
+## 0.5.4 (2026-07-17)
 
 ### What's New?
 
@@ -45,6 +62,12 @@ version number and date above, and delete whichever subheadings below don't appl
     instead of masking the backwards assertion with `xfail`.
 - Removed a stale link to PUDL's release notes page from the PR template's
     documentation checklist; it now just says to update the release notes.
+
+## 0.5.3 (2026-07-17)
+
+No functional changes. This tag points at the same commit as `v0.5.2` -- consistent
+with being cut from a stale local `main`, the exact failure mode `0.5.5`, above, now
+catches.
 
 ## 0.5.2 (2026-07-17)
 
