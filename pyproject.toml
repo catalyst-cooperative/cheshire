@@ -243,6 +243,7 @@ platforms = ["linux-aarch64", "osx-arm64", "linux-64", "osx-64", "win-64"]
 markdownlint-cli2 = ">=0.23.0"
 mdformat = ">=1.0.0"
 mdformat-gfm = ">=1.0.0"
+mdformat-frontmatter = ">=2.1"
 prettier = ">=3.9.3"
 taplo = ">=0.10.0"
 

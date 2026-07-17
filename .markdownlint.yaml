@@ -13,3 +13,8 @@ MD007:
 # sections in docs/release_notes.md; only flag duplicates within the same section.
 MD024:
   siblings_only: true
+# Don't treat a `title:` key in YAML front matter as an implicit top-level heading --
+# GitHub issue templates use `title:` for the default issue title, which otherwise
+# collides with this rule's Jekyll-style front-matter-title heuristic.
+MD025:
+  front_matter_title: ""
