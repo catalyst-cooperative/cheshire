@@ -93,6 +93,12 @@ repos:
     hooks:
       - id: hadolint
 
+  # Lint shell scripts for common bugs and portability issues
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+
   # Check Github Actions
   - repo: https://github.com/rhysd/actionlint
     rev: v1.7.12
