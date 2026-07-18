@@ -29,7 +29,31 @@ would when cutting an actual release. See AGENTS.md's Documentation section for 
 
 - It's also good to list any remaining known problems, and link to their issues too.
 
-## 0.5.5 (2026-07-17)
+## 0.5.7 (2026-07-18)
+
+### What's New?
+
+- Replaced [pyrefly](https://pyrefly.org/) with [ty](https://github.com/astral-sh/ty)
+    (Astral's Rust-based type checker) for type checking, configured under the new
+    `[tool.ty.src]`/`[tool.ty.environment]` sections of `pyproject.toml` and run via
+    `pixi run lint`. Unlike pyrefly's official pre-commit hook, ty's official hook
+    shells out to `uv check`, which needs network access to resolve dependencies --
+    incompatible with pre-commit.ci. It now runs as a local pre-commit hook through
+    the pixi environment instead, and is separately enforced by a dedicated step in
+    the `pytest` GitHub Actions workflow, since pre-commit.ci skips it. See PR !544
+- Added a `.gitattributes` file marking `pixi.lock` as `linguist-generated`, so
+    GitHub collapses it by default in PR diffs instead of it dominating the review
+    every time a dependency changes. See PR !544
+
+### Bug Fixes
+
+- Narrowed the GitHub App token used by `update-lockfiles.yml` to just the
+    `contents`/`pull-requests` permissions that workflow actually needs, instead of
+    inheriting the app's full installed permission set, and stopped `actions/checkout`
+    from persisting that token in the local git config once nothing after checkout
+    needs it. See PR !544
+
+## 0.5.6 (2026-07-17)
 
 ### Bug Fixes
 
@@ -38,6 +62,11 @@ would when cutting an actual release. See AGENTS.md's Documentation section for 
     on `main`, including a stale local `main` that's behind `origin`. It now requires
     an exact match against `origin/main`'s current tip, so tagging from a stale local
     checkout fails loudly instead of silently releasing an old commit.
+
+## 0.5.5 (2026-07-17)
+
+No functional changes. This tag points at the same commit as `v0.5.4` -- another
+instance of the same stale-tag pattern `0.5.6`, above, now catches.
 
 ## 0.5.4 (2026-07-17)
 

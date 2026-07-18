@@ -74,7 +74,7 @@ tests = [
   "pytest>=9.1.1",                 # Our testing framework
 ]
 types = [
-  "pyrefly>=1.1.1", # Fast Rust-based Python type checker
+  "ty>=0.0.61", # Extremely fast Rust-based Python type checker, from Astral
 ]
 
 [tool.hatch.version]
@@ -211,13 +211,15 @@ exclude_lines = [
   "logger.debug",
 ]
 
-[tool.pyrefly]
-# Limited to "src" so the pre-commit hook -- which only installs pyrefly itself,
-# not the rest of our dependencies -- can still resolve imports. `pixi run lint`
-# widens this to also check "tests", since it runs in an environment that has
-# every dependency installed.
-project-includes = ["src"]
-python-version = "3.14"
+[tool.ty.src]
+# Unlike pyrefly's pre-commit hook, ty always runs with the full pixi environment
+# (see the local "ty" pre-commit hook below), so there's no need to limit checking
+# to "src" alone the way pyrefly's config used to.
+include = ["src", "tests"]
+
+# No [tool.ty.environment] python-version setting -- ty already infers it from
+# `project.requires-python` above, so pinning it again here would just be tracking
+# the same version in two places.
 
 [tool.pixi.workspace]
 channels = ["conda-forge", "bioconda"]
@@ -268,8 +270,8 @@ test = { cmd = "coverage report --sort=cover", depends-on = [
 ] }
 
 lint-ruff = "ruff check ."
-lint-pyrefly = "pyrefly check src tests"
-lint = { depends-on = ["lint-ruff", "lint-pyrefly"] }
+lint-ty = "ty check"
+lint = { depends-on = ["lint-ruff", "lint-ty"] }
 
 format-ruff = "ruff format . && ruff check --fix ."
 format-toml = "taplo fmt pyproject.toml zensical.toml"

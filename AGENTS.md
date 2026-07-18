@@ -45,8 +45,8 @@ so agents use the same invocations CI does:
 
 - `pixi run test` -- run the unit and integration tests under `tests/` with pytest,
     and report combined test coverage.
-- `pixi run lint` -- run `ruff` and `pyrefly` (static analysis and type checking).
-    Doesn't modify files.
+- `pixi run lint` -- run `ruff` and `ty` (static analysis and type checking). Doesn't
+    modify files.
 - `pixi run format` -- automatically reformat code and other files with `ruff`,
     `taplo`, `mdformat`, and `prettier`. Run this before committing.
 - `pixi run docs` -- build the documentation with `zensical` into `site/`.
@@ -71,10 +71,9 @@ description of what each one does and when to use it.
     `pyproject.toml`) and applied automatically by `pixi run format` / the `ruff` and
     `ruff-format` pre-commit hooks. Don't hand-format code to match a personal
     preference that conflicts with what `ruff format` produces.
-- Type checking is done with `pyrefly` (see `[tool.pyrefly]`). New code should be
-    typed; if you must suppress a false positive, use a `# pyrefly: ignore[error-code]`
-    comment with a short note explaining *why* it's a false positive, not just that it
-    is one.
+- Type checking is done with `ty` (see `[tool.ty.src]`). New code should be typed;
+    if you must suppress a false positive, use a `# ty: ignore[rule-name]` comment
+    with a short note explaining *why* it's a false positive, not just that it is one.
 - Docstrings use the Google convention (`[tool.ruff.lint.pydocstyle]`).
 
 <!--
