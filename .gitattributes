@@ -1,0 +1,4 @@
+# Tell GitHub's linguist (and thus PR diffs) that this is a generated file, so it's
+# collapsed by default in PRs instead of dominating the diff every time a dependency
+# changes.
+pixi.lock linguist-generated=true
