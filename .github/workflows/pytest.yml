@@ -20,6 +20,11 @@ jobs:
         with:
           cache: true
 
+      - name: Type check with ty
+        # Not covered by pre-commit.ci (see .pre-commit-config.yaml's "ty" hook and
+        # its `ci.skip` entry), so it's enforced here instead.
+        run: pixi run lint-ty
+
       - name: Run PyTest with coverage
         run: pixi run test
 

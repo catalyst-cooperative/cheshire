@@ -38,7 +38,7 @@
 - The most important tasks are:
     - `pixi run test` -- run all the unit and integration tests under `tests/` with
         pytest and report test coverage.
-    - `pixi run lint` -- run `ruff` and `pyrefly` to catch errors and style issues.
+    - `pixi run lint` -- run `ruff` and `ty` to catch errors and style issues.
     - `pixi run format` -- automatically reformat the code and other files using `ruff`,
         `taplo`, `mdformat`, and `prettier`.
     - `pixi run docs` -- build the documentation with `zensical`.
@@ -114,9 +114,16 @@ We also have a custom hook that clears Jupyter notebook outputs prior to committ
 
 ## Type Checking
 
-We use [pyrefly](https://pyrefly.org/), a fast Rust-based type checker. It's
-configured under the `tool.pyrefly` section of `pyproject.toml` and run via
-`pixi run lint`.
+We use [ty](https://github.com/astral-sh/ty), an extremely fast Rust-based type
+checker from Astral (the `ruff`/`uv` team). It's configured under the
+`tool.ty.src`/`tool.ty.environment` sections of `pyproject.toml` and run via
+`pixi run lint`. It also runs as a pre-commit hook, but as a local hook rather than
+the official `astral-sh/ty-pre-commit` one -- that hook shells out to `uv check`,
+which needs network access to resolve dependencies, and pre-commit.ci disables
+network access while running hooks. Running it through the pixi environment (which
+already has every dependency installed) sidesteps that, but since pre-commit.ci
+still can't run it, it's separately enforced by a dedicated step in the `pytest`
+GitHub Actions workflow.
 
 ## Code & Documentation Linters
 
