@@ -40,7 +40,18 @@ would when cutting an actual release. See AGENTS.md's Documentation section for 
     shells out to `uv check`, which needs network access to resolve dependencies --
     incompatible with pre-commit.ci. It now runs as a local pre-commit hook through
     the pixi environment instead, and is separately enforced by a dedicated step in
-    the `pytest` GitHub Actions workflow, since pre-commit.ci skips it.
+    the `pytest` GitHub Actions workflow, since pre-commit.ci skips it. See PR #544
+- Added a `.gitattributes` file marking `pixi.lock` as `linguist-generated`, so
+    GitHub collapses it by default in PR diffs instead of it dominating the review
+    every time a dependency changes. See PR #544
+
+### Bug Fixes
+
+- Narrowed the GitHub App token used by `update-lockfiles.yml` to just the
+    `contents`/`pull-requests` permissions that workflow actually needs, instead of
+    inheriting the app's full installed permission set, and stopped `actions/checkout`
+    from persisting that token in the local git config once nothing after checkout
+    needs it. See PR #544
 
 ## 0.5.6 (2026-07-17)
 
