@@ -18,7 +18,7 @@ jobs:
     if: >-
       github.actor == 'dependabot[bot]' ||
       github.actor == 'pre-commit-ci[bot]' ||
-      github.actor == 'catalyst-workflow-triggerer'
+      github.actor == 'catalyst-workflow-triggerer[bot]'
     steps:
       - name: Impersonate auto merge PR bot
         uses: actions/create-github-app-token@v3
