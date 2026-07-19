@@ -29,6 +29,35 @@ would when cutting an actual release. See AGENTS.md's Documentation section for 
 
 - It's also good to list any remaining known problems, and link to their issues too.
 
+## 0.5.8 (2026-07-19)
+
+### What's New?
+
+- Every task under `[tool.pixi.tasks]` in `pyproject.toml` now has a `description`,
+    so `pixi task list` (and the description pixi prints alongside each task as it
+    runs) actually explains what each one does, instead of leaving the `Description`
+    column blank. See PR !547
+- Replaced references to installing packages with `pip` in `README.md` and
+    `docs/tools.md` with [uv](https://docs.astral.sh/uv/), which is faster and has
+    become the de facto standard. Left two references to `pip` alone where switching
+    wouldn't make sense: `docs/release_notes.md`'s historical changelog entries (which
+    describe a past Dependabot config value, not an instruction to users) and the
+    transient `pip install setuptools-scm` step in `docker-build-push.yml` (a single
+    lightweight package installed once on an ephemeral CI runner, where `uv`'s speed
+    advantage isn't worth the extra `setup-uv` action). See PR !547
+- Added [typos](https://github.com/crate-ci/typos) (via the
+    `adhtruong/mirrors-typos` pre-commit hook) to spell check documentation and code
+    comments, and [detect-secrets](https://github.com/Yelp/detect-secrets) to scan
+    for accidentally committed secrets and credentials, with a fresh `.secrets.baseline`
+    recording that nothing was found. Both run as regular pre-commit.ci-hosted hooks,
+    same as `markdownlint-cli2`/`shellcheck`/`actionlint`, so they don't need a
+    dedicated pixi task or CI step. See PR !547
+- Marked `pixi.lock` `merge=ours` in `.gitattributes`, so a merge conflict on the
+    generated lockfile keeps our side instead of attempting a line-by-line merge --
+    `pixi install`/`pixi update` regenerates it anyway, so a hand-merged version would
+    just be replaced. Also marked `*.ipynb` `linguist-detectable=false`, so notebook
+    JSON doesn't dominate GitHub's per-repo language statistics. See PR !547
+
 ## 0.5.7 (2026-07-18)
 
 ### What's New?
