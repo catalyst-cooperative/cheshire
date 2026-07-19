@@ -27,6 +27,12 @@ uniform. It contains a lot of infrastructure surrounding a minimal Python packag
 - Run `pixi run prek install` in the newly cloned repository to install the
     [pre-commit hooks](https://pre-commit.com/) defined in `.pre-commit-config.yaml`,
     using [prek](https://prek.j178.dev/) as the runner.
+- Run `git config merge.ours.driver true` so the `merge=ours` rule in `.gitattributes`
+    (which keeps your side of `pixi.lock` on conflict, rather than trying to line-merge
+    a huge generated file) actually takes effect. Git ignores that attribute silently
+    if this isn't set -- there's no way to configure it from within the repository
+    itself, since a tracked file specifying an arbitrary merge driver to run would be a
+    remote code execution risk, so every clone has to opt in locally.
 - Run `pixi run test` from the top level of the repository to verify that everything
     is working correctly.
 
@@ -82,6 +88,7 @@ of the tooling this template sets up:
 - [Devcontainer](https://docs.catalyst.coop/cheshire/tools/#devcontainer)
 - [Pytest Testing Framework](https://docs.catalyst.coop/cheshire/tools/#pytest-testing-framework)
 - [Git Pre-commit Hooks](https://docs.catalyst.coop/cheshire/tools/#git-pre-commit-hooks)
+- [Git Attributes](https://docs.catalyst.coop/cheshire/tools/#git-attributes)
 - [Code Formatting & Linting](https://docs.catalyst.coop/cheshire/tools/#code-formatting-linting)
 - [Type Checking](https://docs.catalyst.coop/cheshire/tools/#type-checking)
 - [Code & Documentation Linters](https://docs.catalyst.coop/cheshire/tools/#code-documentation-linters)

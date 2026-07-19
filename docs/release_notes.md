@@ -56,7 +56,16 @@ would when cutting an actual release. See AGENTS.md's Documentation section for 
     generated lockfile keeps our side instead of attempting a line-by-line merge --
     `pixi install`/`pixi update` regenerates it anyway, so a hand-merged version would
     just be replaced. Also marked `*.ipynb` `linguist-detectable=false`, so notebook
-    JSON doesn't dominate GitHub's per-repo language statistics. See PR !547
+    JSON doesn't dominate GitHub's per-repo language statistics. **`merge=ours` needs
+    a one-time, per-clone `git config merge.ours.driver true` to actually take
+    effect** -- git silently ignores the attribute otherwise, by design, since a
+    tracked file can't be allowed to specify an arbitrary merge driver to run without
+    each clone opting in locally first. Existing clones should run that command once
+    to pick this up. See PR !547
+- Documented all of the above in `docs/tools.md`: added `typos`/`detect-secrets` to
+    the "Code & Documentation Linters" list, and added a new "Git Attributes" section
+    (linked from `README.md`) covering `.gitattributes` and the `merge.ours.driver`
+    setup step. See PR !547
 
 ## 0.5.7 (2026-07-18)
 

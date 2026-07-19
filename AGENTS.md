@@ -30,6 +30,10 @@ tasks, defined under `[tool.pixi.*]` in `pyproject.toml`.
 - Run `pixi run prek install` once to install the git pre-commit hooks (run via
     [prek](https://prek.j178.dev/), a fast drop-in replacement for `pre-commit` that
     still reads `.pre-commit-config.yaml`).
+- Run `git config merge.ours.driver true` once so the `merge=ours` rule in
+    `.gitattributes` actually takes effect on `pixi.lock` conflicts -- git ignores that
+    attribute silently otherwise, since a repo-tracked file can't be allowed to specify
+    an arbitrary merge driver to run without the clone opting in locally first.
 
 <!--
 If your project needs additional one-time setup -- database seeding, credentials,
