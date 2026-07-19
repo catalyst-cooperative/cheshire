@@ -27,6 +27,12 @@ uniform. It contains a lot of infrastructure surrounding a minimal Python packag
 - Run `pixi run prek install` in the newly cloned repository to install the
     [pre-commit hooks](https://pre-commit.com/) defined in `.pre-commit-config.yaml`,
     using [prek](https://prek.j178.dev/) as the runner.
+- Run `git config merge.ours.driver true` so the `merge=ours` rule in `.gitattributes`
+    (which keeps your side of `pixi.lock` on conflict, rather than trying to line-merge
+    a huge generated file) actually takes effect. Git ignores that attribute silently
+    if this isn't set -- there's no way to configure it from within the repository
+    itself, since a tracked file specifying an arbitrary merge driver to run would be a
+    remote code execution risk, so every clone has to opt in locally.
 - Run `pixi run test` from the top level of the repository to verify that everything
     is working correctly.
 
@@ -43,7 +49,7 @@ import cheshire
 ```
 
 The **distribution name** is the name that is used to install the software using a
-program like `pip`, `conda`, or `pixi`. It is often identical to the package name, but
+program like `uv`, `conda`, or `pixi`. It is often identical to the package name, but
 can also contain a prefix namespace that indicates the individual or organization
 responsible for maintaining the package. See
 [PEP 423](https://peps.python.org/pep-0423/) for more on Python package naming
@@ -54,7 +60,7 @@ publish, so our `pudl` package becomes `catalystcoop.pudl` in the Python Package
 `project.name` defined in `pyproject.toml`.
 
 ```bash
-pip install catalystcoop.cheshire
+uv pip install catalystcoop.cheshire
 ```
 
 The package and distribution names are referenced in many of the files in the template
@@ -67,7 +73,7 @@ editor. The name of the package directory under `src/` will also need to be chan
 - Rename the `src/cheshire` directory to reflect the new package name.
 - Search for `cheshire` and replace it as appropriate everywhere. Sometimes this will
     be with a distribution name like `catalystcoop.cheshire` (the package as it appears
-    for `pip` or `PyPI`) and sometimes this will be the importable package name (the name
+    for `uv` or `PyPI`) and sometimes this will be the importable package name (the name
     of the directory under `src` e.g. `cheshire`).
 - Enable GitHub Pages for the new repository (Settings -> Pages -> Source: GitHub
     Actions) so the `docs` workflow can publish the documentation.
@@ -82,6 +88,7 @@ of the tooling this template sets up:
 - [Devcontainer](https://docs.catalyst.coop/cheshire/tools/#devcontainer)
 - [Pytest Testing Framework](https://docs.catalyst.coop/cheshire/tools/#pytest-testing-framework)
 - [Git Pre-commit Hooks](https://docs.catalyst.coop/cheshire/tools/#git-pre-commit-hooks)
+- [Git Attributes](https://docs.catalyst.coop/cheshire/tools/#git-attributes)
 - [Code Formatting & Linting](https://docs.catalyst.coop/cheshire/tools/#code-formatting-linting)
 - [Type Checking](https://docs.catalyst.coop/cheshire/tools/#type-checking)
 - [Code & Documentation Linters](https://docs.catalyst.coop/cheshire/tools/#code-documentation-linters)
