@@ -257,39 +257,39 @@ taplo = ">=0.10.0"
 default = { features = ["lint"], solve-group = "default" }
 
 [tool.pixi.tasks]
-test-erase = "coverage erase"
+test-erase = { cmd = "coverage erase", description = "Wipe previously recorded coverage data before the test suites run." }
 test-unit = { cmd = "pytest --cov=cheshire --cov-append --cov-report=xml --cov-fail-under=0 --doctest-modules src/cheshire tests/unit", depends-on = [
   "test-erase",
-] }
+], description = "Run unit tests (and doctests) with coverage instrumentation." }
 test-integration = { cmd = "pytest --cov=cheshire --cov-append --cov-report=xml --cov-fail-under=0 tests/integration", depends-on = [
   "test-erase",
-] }
+], description = "Run integration tests with coverage instrumentation." }
 test = { cmd = "coverage report --sort=cover", depends-on = [
   "test-unit",
   "test-integration",
-] }
+], description = "Run all tests and report combined coverage, failing if it's below the configured threshold." }
 
-lint-ruff = "ruff check ."
-lint-ty = "ty check"
-lint = { depends-on = ["lint-ruff", "lint-ty"] }
+lint-ruff = { cmd = "ruff check .", description = "Check code style and correctness with ruff, without modifying files." }
+lint-ty = { cmd = "ty check", description = "Type check the code with ty." }
+lint = { depends-on = [
+  "lint-ruff",
+  "lint-ty",
+], description = "Run all linters and type checks, without modifying files." }
 
-format-ruff = "ruff format . && ruff check --fix ."
-format-toml = "taplo fmt pyproject.toml zensical.toml"
-format-md = "mdformat README.md AGENTS.md docs"
-format-yaml = "prettier --write '**/*.{yaml,yml}'"
+format-ruff = { cmd = "ruff format . && ruff check --fix .", description = "Reformat code and auto-fix lint issues with ruff." }
+format-toml = { cmd = "taplo fmt pyproject.toml zensical.toml", description = "Reformat TOML files with taplo." }
+format-md = { cmd = "mdformat README.md AGENTS.md docs", description = "Reformat Markdown files with mdformat." }
+format-yaml = { cmd = "prettier --write '**/*.{yaml,yml}'", description = "Reformat YAML files with prettier." }
 format = { depends-on = [
   "format-ruff",
   "format-toml",
   "format-md",
   "format-yaml",
-] }
+], description = "Run all formatters, modifying files in place." }
 
-docs = "zensical build"
-docs-serve = "zensical serve"
+docs = { cmd = "zensical build", description = "Build the documentation with Zensical into site/." }
+docs-serve = { cmd = "zensical serve", description = "Serve the documentation locally, rebuilding on changes." }
 
-# Bump the `rev` pins in .pre-commit-config.yaml to their latest tagged versions.
-# Used by .github/workflows/update-lockfiles.yml; see also `pixi update` for
-# refreshing pixi.lock itself.
-prek-update = "prek update"
+prek-update = { cmd = "prek update", description = "Bump the `rev` pins in .pre-commit-config.yaml to their latest tagged versions. Used by .github/workflows/update-lockfiles.yml; see also `pixi update` for refreshing pixi.lock itself." }
 
-build = "python -m build && twine check --strict dist/*"
+build = { cmd = "python -m build && twine check --strict dist/*", description = "Build the sdist and wheel, and verify them with twine." }
