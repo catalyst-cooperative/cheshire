@@ -24,7 +24,7 @@
     dependencies that can be installed in special circumstances: `dev`, `docs`, `lint`,
     `tests`, and `types`. The packages listed there are used in development, building the
     docs, linting, running the tests, and type checking (respectively) but aren't
-    required for a normal user who is just installing the package from `pip` or `conda`.
+    required for a normal user who is just installing the package from `uv` or `conda`.
     These are defined under the `project.optional-dependencies` section of
     `pyproject.toml`.
 

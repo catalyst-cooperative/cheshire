@@ -43,7 +43,7 @@ import cheshire
 ```
 
 The **distribution name** is the name that is used to install the software using a
-program like `pip`, `conda`, or `pixi`. It is often identical to the package name, but
+program like `uv`, `conda`, or `pixi`. It is often identical to the package name, but
 can also contain a prefix namespace that indicates the individual or organization
 responsible for maintaining the package. See
 [PEP 423](https://peps.python.org/pep-0423/) for more on Python package naming
@@ -54,7 +54,7 @@ publish, so our `pudl` package becomes `catalystcoop.pudl` in the Python Package
 `project.name` defined in `pyproject.toml`.
 
 ```bash
-pip install catalystcoop.cheshire
+uv pip install catalystcoop.cheshire
 ```
 
 The package and distribution names are referenced in many of the files in the template
@@ -67,7 +67,7 @@ editor. The name of the package directory under `src/` will also need to be chan
 - Rename the `src/cheshire` directory to reflect the new package name.
 - Search for `cheshire` and replace it as appropriate everywhere. Sometimes this will
     be with a distribution name like `catalystcoop.cheshire` (the package as it appears
-    for `pip` or `PyPI`) and sometimes this will be the importable package name (the name
+    for `uv` or `PyPI`) and sometimes this will be the importable package name (the name
     of the directory under `src` e.g. `cheshire`).
 - Enable GitHub Pages for the new repository (Settings -> Pages -> Source: GitHub
     Actions) so the `docs` workflow can publish the documentation.
