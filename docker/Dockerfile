@@ -1,13 +1,13 @@
-FROM ghcr.io/prefix-dev/pixi:0.72.2
+FROM ghcr.io/prefix-dev/pixi:0.76.1
 
 # Create a non-root user inside the container
-RUN useradd -Ums /bin/bash catalyst
+RUN useradd --uid 1001 -Ums /bin/bash catalyst
 
 # Copy the cloned repository into the user's home directory
 COPY --chown=catalyst:catalyst . /home/catalyst/cheshire
 
 # Switch to being the catalyst user and go into the copied repo
-USER catalyst
+USER 1001
 WORKDIR /home/catalyst/cheshire
 
 # hatch-vcs normally derives the package version from `.git`, but can't do that
