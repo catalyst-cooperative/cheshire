@@ -41,14 +41,14 @@ repos:
   # Formatters: hooks that re-write Python, TOML, YAML, and Markdown files
   ########################################################################################
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.7
+    rev: v0.16.8
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format
 
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.9.6
+    rev: v3.9.8
     hooks:
       - id: prettier
         types_or: [yaml]
@@ -77,7 +77,7 @@ repos:
   ########################################################################################
   # Check Markdown files for style issues
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.23.2
+    rev: v0.23.3
     hooks:
       - id: markdownlint-cli2
 
@@ -101,7 +101,7 @@ repos:
 
   # Spell check our documentation and code comments
   - repo: https://github.com/adhtruong/mirrors-typos
-    rev: v1.50.1
+    rev: v1.50.2
     hooks:
       - id: typos
         args: [] # Make this read, not write
